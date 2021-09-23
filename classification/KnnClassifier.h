@@ -76,7 +76,7 @@ vector <string> *KnnClassifier<T>::getResults() {
 template<class T>
 void KnnClassifier<T>::setDistanceCalculatingMethod(const string& type) {
     if (!(type == "EUC" || type == "MAN" || type == "CHE")) {
-        throw std::invalid_argument("Invalid distance method : %s" + type);
+        throw std::invalid_argument("Invalid distance method : " + type);
     }
     delete this->calculator;
     if (type == "EUC") {
