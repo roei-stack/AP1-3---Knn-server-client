@@ -18,7 +18,7 @@ private:
     vector<T*>* trainingData;
     vector<T*>* testingData;
     // the classifier's results, in the original order : {class1, class2, ...}
-    vector<string>* results;
+    vector<string>* results = new vector<string>();
 
     /**
      * @return works out the best classification given the k nearest neighbours
@@ -42,7 +42,7 @@ private:
     string classify(const T& toClassify) override;
 
 public:
-    KnnClassifier(int k, DistanceCalculator<T>* calc, vector<T*> *trainingData, vector<T*> *testingData);
+    KnnClassifier(int k, const string& calc, vector<T*> *trainingData, vector<T*> *testingData);
     void classifyAllTestingData() override;
     /**
      * @return the classifications in order
@@ -56,14 +56,13 @@ public:
     void setTrainingData(vector<T*>* data) override;
     vector<T*>* getTestingData() const override;
     void setTestingData(vector<T*>* data) override;
-    void setDistanceCalculatingMethod(DistanceCalculator<T>* calculator);
+    void setDistanceCalculatingMethod(const string& type);
     ~KnnClassifier() override;
 };
 /************Method's definitions************/
 template<class T>
-KnnClassifier<T>::KnnClassifier(int k, DistanceCalculator<T>* calc, vector<T*> *trainingData, vector<T*> *testingData) : k(k) {
-    this->results = new vector<string>();
-    this->calculator = calculator;
+KnnClassifier<T>::KnnClassifier(int k, const string& calc, vector<T*> *trainingData, vector<T*> *testingData) : k(k) {
+    this->setDistanceCalculatingMethod(calc);
     this->trainingData = trainingData;
     this->testingData = testingData;
 }
@@ -75,9 +74,20 @@ vector <string> *KnnClassifier<T>::getResults() {
 }
 
 template<class T>
-void KnnClassifier<T>::setDistanceCalculatingMethod(DistanceCalculator<T> *newCalculator) {
+void KnnClassifier<T>::setDistanceCalculatingMethod(const string& type) {
+    if (!(type == "EUC" || type == "MAN" || type == "CHE")) {
+        throw std::invalid_argument("Invalid distance method : %s" + type);
+    }
     delete this->calculator;
-    this->calculator = newCalculator;
+    if (type == "EUC") {
+        this->calculator = new EuclideanDistance<T>();
+    }
+    if (type == "MAN") {
+        this->calculator = new ManhattenDistance<T>();
+    }
+    if (type == "CHE") {
+        this->calculator = new ChebyshevDistance<T>();
+    }
 }
 
 template<class T>
@@ -86,6 +96,9 @@ int KnnClassifier<T>::getK() const {
 }
 template<class T>
 void KnnClassifier<T>::setK(int newK) {
+    if (k > 10 || k < 1) {
+        throw std::invalid_argument("Invalid k value : " + k);
+    }
     this->k = newK;
 }
 
@@ -163,6 +176,9 @@ string KnnClassifier<T>::chooseBestClassification() {
 
 template<class T>
 void KnnClassifier<T>::classifyAllTestingData() {
+    if (this->testingData == nullptr || this->trainingData == nullptr) {
+        throw std::runtime_error("Testing/Training data is uninitialized");
+    }
     this->results->clear();
     int size = this->testingData->size();
     for (T* t : *(this->testingData)) {

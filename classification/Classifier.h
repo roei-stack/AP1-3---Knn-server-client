@@ -8,6 +8,8 @@
 #include <iostream>
 #include "DistanceCalculator.h"
 #include "EuclideanDistance.h"
+#include "ManhattenDistance.h"
+#include "ChebyshevDistance.h"
 
 using std::vector;
 using std::string;
@@ -35,7 +37,7 @@ public:
     virtual void setTrainingData(vector<T*>* data) = 0;
     virtual vector<T*>* getTestingData() const = 0;
     virtual void setTestingData(vector<T*>* data) = 0;
-    virtual void setDistanceCalculatingMethod(DistanceCalculator<T>* calculator) = 0;
+    virtual void setDistanceCalculatingMethod(const string& type) = 0;
     /** virtual destructor **/
     virtual ~Classifier() = default;
 };

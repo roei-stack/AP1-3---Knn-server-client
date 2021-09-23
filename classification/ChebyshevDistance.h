@@ -13,7 +13,7 @@ double ChebyshevDistance<T>::getDistance(const T& t1, const T& t2) const {
     vector<double> p1 = t1.getCoordinates();
     vector<double> p2 = t2.getCoordinates();
     for (int i = 0; i < p1.size(); i++) {
-        int curr = abs(p1[i] - p2[i])
+        double curr = abs(p1[i] - p2[i]);
         if (max < curr) {
             max = curr;
         }
