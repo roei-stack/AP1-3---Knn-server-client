@@ -10,6 +10,7 @@ using std::string;
 
 int main() {
 
+
     string msg = "trolololol";
     TcpServerSocket serverSocket(3257, "127.0.0.1");
     TcpSocket client("127.0.0.1", 3257);
@@ -17,22 +18,22 @@ int main() {
     TcpSocket* serverClientSocket = serverSocket.accept();
     SocketIO socketIo(&client);
     socketIo.write(msg);
-    cout << serverClientSocket->receive() << endl;
+    cout << serverClientSocket->receive() << endl << "********************" << endl;
 
 
-    /*
+
     string classifiedPath = "../classified.csv";
     string unclassifiedPath = "../unclassified.csv";
     //// initializing the reader for classified and unclassified
     Reader reader(classifiedPath);
     Reader otherReader(unclassifiedPath);
     //// loading the datasets
-    vector<Iris*>* classifiedData = reader.buildDataset();
-    vector<Iris*>* unclassifiedData = otherReader.buildDataset();
+    vector<Classifiable*>* classifiedData = reader.buildDataset();
+    vector<Classifiable*>* unclassifiedData = otherReader.buildDataset();
     // applying classifier
     EuclideanDistance calculator;
 
-    Classifiable *c = new Iris(0,0,0,0);
+    Classifiable *c = new Classifiable(0,0,0,0);
 
     // creating classifier, classifying all and getting results
     KnnClassifier classifier(5, "EUC", reinterpret_cast<vector<struct Classifiable *> *>(classifiedData),
@@ -45,6 +46,6 @@ int main() {
     for (const string& s : *ans) {
         std::cout << s << std::endl;
     }
-     */
+
     return 0;
 }

@@ -1,31 +1,28 @@
-#ifndef ASS1_CLASSIFIABLE_H
-#define ASS1_CLASSIFIABLE_H
+#ifndef ASS1_IRIS_H
+#define ASS1_IRIS_H
 
 #include <iostream>
 #include <string>
 #include <vector>
 
-/**
- * interface of an classifiable object.
- */
 class Classifiable {
 private:
-    virtual void Print(std::ostream& os) const = 0;
+    const double width;
+    const double sepalLength;
+    const double sepalWidth;
+    const double petalLength;
+    std::string classification;
+    void Print(std::ostream& os) const;
 public:
-    /** @return  string the classification of this. */
-    virtual std::string getClassification() const = 0;
-    virtual void setClassification(std::string newClassification) = 0;
+    Classifiable(double width, double sepalLength, double sepalWidth, double petalLength,
+         std::string  classification = "");
 
-    /** @return the coordinates of this classifiable */
-    virtual std::vector<double> getCoordinates() const = 0;
-
-    friend std::ostream& operator<<(std::ostream& out, const Classifiable& b) {
-        b.Print(out);
-        return out;
-    }
-
-    virtual ~Classifiable() = default;
+    std::string getClassification() const;
+    /**
+     * @return the coordinates of this Classifiable
+     */
+    std::vector<double> getCoordinates() const;
+    void setClassification(std::string newClassification);
+    friend std::ostream& operator<<(std::ostream& out, const Classifiable& b);
 };
-
-
-#endif //ASS1_CLASSIFIABLE_H
+#endif //ASS1_IRIS_H

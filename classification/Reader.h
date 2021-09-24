@@ -5,7 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
-#include "Iris.h"
+#include "Classifiable.h"
 using namespace std;
 
 /**
@@ -15,10 +15,10 @@ class Reader {
 private:
     ifstream file;
     void close();
-    Iris* parseLine(const string& line);
+    Classifiable* parseLine(const string& line);
 public:
     explicit Reader(const string& filePath);
-    vector<Iris*>* buildDataset();
+    vector<Classifiable*>* buildDataset();
     ~Reader();
 };
 #endif //HW3_READER_H

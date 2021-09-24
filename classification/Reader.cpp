@@ -13,14 +13,14 @@ Reader::Reader(const string& filePath) {
 
 /**
  * builds the database from the csv file, this operation allocates memory on the heap
- * @return a vector-list of pointers to heap-allocated Iris objects
+ * @return a vector-list of pointers to heap-allocated Classifiable objects
  */
-vector<Iris*>* Reader::buildDataset() {
-    vector<Iris*> *data;
-    data = new vector<Iris *>;
+vector<Classifiable*>* Reader::buildDataset() {
+    vector<Classifiable*> *data;
+    data = new vector<Classifiable *>;
     string line;
     while (this->file >> line) {
-        Iris* iris = parseLine(line);
+        Classifiable* iris = parseLine(line);
         data->push_back(iris);
     }
     // Requests the container to reduce its capacity to fit its size, so no memory is wasted
@@ -36,7 +36,7 @@ vector<Iris*>* Reader::buildDataset() {
  * @return a pointer to classified object
  * remember to free the database
  */
-Iris* Reader::parseLine(const string& line) {
+Classifiable* Reader::parseLine(const string& line) {
     double petalLength, sepalWidth, sepalLength, width;
     string type;
     //"petal length,sepal width, sepal length, width"
@@ -58,7 +58,7 @@ Iris* Reader::parseLine(const string& line) {
     values[3] >> width;
     values[4] >> type;
     // creating the object
-    Iris* iris = new Iris(width, sepalLength, sepalWidth,petalLength, type);
+    Classifiable* iris = new Classifiable(width, sepalLength, sepalWidth,petalLength, type);
     return iris;
 }
 
