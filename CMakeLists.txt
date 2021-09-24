@@ -11,4 +11,8 @@ add_executable(hw3 testClassifier.cpp
         classification/DistanceCalculator.h
         classification/EuclideanDistance.h
         classification/ManhattenDistance.h
-        classification/ChebyshevDistance.h io/DefaultIO.h io/StandardIO.h io/SocketIO.h classification/Classifiable.h)
+        classification/ChebyshevDistance.h
+        io/DefaultIO.h io/StandardIO.h io/SocketIO.h
+        classification/Classifiable.h
+        sockets/TcpServerSocket.h sockets/TcpServerSocket.cpp
+        sockets/TcpSocket.h sockets/TcpSocket.cpp)
