@@ -31,7 +31,7 @@ private:
      *  2. call vector.clear()
      * now to vector is ready to reassign
      */
-    void clearData(vector<Classifiable*> *data) override;
+    void clearData(vector<Classifiable*> *data);
 
     /**
     * returns the classification of toClassify
@@ -201,7 +201,7 @@ void KnnClassifier::classifyAllTestingData() {
 }
 
 void KnnClassifier::clearData(vector<Classifiable*> *data) {
-    // used to delete pointers in vector but the vector itself can be reused
+    // used to delete pointers in vector but the vector itself can be reused - for classes members only
     for (auto i : *data) {
         delete i;
     }

@@ -13,7 +13,7 @@ using std::vector;
 class DistanceCalculator {
 public:
     virtual double getDistance(const Classifiable& t1, const Classifiable& t2) const = 0;
-    ~DistanceCalculator() = default;
+    virtual ~DistanceCalculator() = default;
 };
 
 #endif //HW3_DISTANCECALCULATOR_H

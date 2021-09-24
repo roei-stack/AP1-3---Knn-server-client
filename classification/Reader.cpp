@@ -17,11 +17,11 @@ Reader::Reader(const string& filePath) {
  */
 vector<Classifiable*>* Reader::buildDataset() {
     vector<Classifiable*> *data;
-    data = new vector<Classifiable *>;
+    data = new vector<Classifiable*>;
     string line;
     while (this->file >> line) {
-        Classifiable* iris = parseLine(line);
-        data->push_back(iris);
+        Classifiable* classifiable = parseLine(line);
+        data->push_back(classifiable);
     }
     // Requests the container to reduce its capacity to fit its size, so no memory is wasted
     data->shrink_to_fit();
@@ -37,29 +37,36 @@ vector<Classifiable*>* Reader::buildDataset() {
  * remember to free the database
  */
 Classifiable* Reader::parseLine(const string& line) {
-    double petalLength, sepalWidth, sepalLength, width;
-    string type;
-    //"petal length,sepal width, sepal length, width"
-    // array of 4 arguments, all initialized to empty string
-    stringstream values[5];
-    values[4] = stringstream("");
-    stringstream check(line);
-    string current;
-    int i = 0;
-    char delim = ',';
-    while(getline(check, current, delim)) {
-        values[i] << current;
-        i++;
+    vector<double> coordinates;
+    string classification;
+    // we will iterate over the line using the ',' character as our separator
+    stringstream iterator(line);
+    // we will store our tokens here, last token should be the classification
+    vector<string> tokens;
+
+    /*
+     * while (there are still ',')
+     *      save current token
+    */
+    char separator = ',';
+    string currentString;
+    while (getline(iterator, currentString, separator)) {
+        tokens.push_back(currentString);
     }
-    // assigning values
-    values[0] >> petalLength;
-    values[1] >> sepalWidth;
-    values[2] >> sepalLength;
-    values[3] >> width;
-    values[4] >> type;
-    // creating the object
-    Classifiable* iris = new Classifiable(width, sepalLength, sepalWidth,petalLength, type);
-    return iris;
+    // the number of coordinates is the amount of tokens - 1 (because the last token is the classification)
+    int amountOfCoordinates = (int) tokens.size() - 1;
+    if (amountOfCoordinates <= 0) {
+        throw runtime_error("could not parse line" + line);
+    }
+    coordinates.reserve(amountOfCoordinates);
+    for (int i = 0; i < amountOfCoordinates; i++) {
+        // if std::stod could not convert an exception will be thrown
+        coordinates.push_back(stod(tokens[i]));
+    }
+    // the classification is the last value in "tokens"
+    classification = tokens[amountOfCoordinates];
+    auto* classifiable = new Classifiable(coordinates, classification);
+    return classifiable;
 }
 
 /**
