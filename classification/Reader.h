@@ -6,19 +6,18 @@
 #include <fstream>
 #include <vector>
 #include "Classifiable.h"
-using namespace std;
 
 /**
  * This class is responsible to parse a csv file given it's path
  */
 class Reader {
 private:
-    ifstream file;
+    std::ifstream file;
     void close();
-    Classifiable* parseLine(const string& line);
+    Classifiable* parseLine(const std::string& line);
 public:
-    explicit Reader(const string& filePath);
-    vector<Classifiable*>* buildDataset();
+    explicit Reader(const std::string& filePath);
+    std::vector<Classifiable*>* buildDataset();
     ~Reader();
 };
 #endif //HW3_READER_H
