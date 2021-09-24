@@ -15,11 +15,15 @@ int main() {
     vector<Iris*>* classifiedData = reader.buildDataset();
     vector<Iris*>* unclassifiedData = otherReader.buildDataset();
     // applying classifier
-    EuclideanDistance<Iris> calculator;
+    EuclideanDistance calculator;
+
+    Classifiable *c = new Iris(0,0,0,0);
 
     // creating classifier, classifying all and getting results
-    KnnClassifier<Iris> classifier(5, &calculator, nullptr, unclassifiedData);
-    classifier.setTrainingData(classifiedData);
+
+    KnnClassifier classifier(5, "EUC", reinterpret_cast<vector<struct Classifiable *> *>(classifiedData),
+                             reinterpret_cast<vector<struct Classifiable *> *>(unclassifiedData));
+
     classifier.classifyAllTestingData();
     vector<string>* ans = classifier.getResults();
 

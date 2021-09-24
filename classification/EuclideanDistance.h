@@ -2,13 +2,12 @@
 #define HW3_EUCLIDEANDISTANCE_H
 #include "DistanceCalculator.h"
 
-template <class T>
-class EuclideanDistance : public DistanceCalculator<T> {
-    double getDistance(const T& t1, const T& t2) const override;
+class EuclideanDistance : public DistanceCalculator {
+public:
+    double getDistance(const Classifiable& t1, const Classifiable& t2) const override;
 };
 
-template<class T>
-double EuclideanDistance<T>::getDistance(const T &t1, const T &t2) const {
+double EuclideanDistance::getDistance(const Classifiable &t1, const Classifiable &t2) const {
     // EUC FORMULA : SQRT(SUM((X[i] - Y[i])^2))
     double sum = 0;
     vector<double> p1 = t1.getCoordinates();

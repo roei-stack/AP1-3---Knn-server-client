@@ -14,7 +14,6 @@
 using std::vector;
 using std::string;
 
-template<class T>
 class Classifier {
 private:
     /**
@@ -25,18 +24,19 @@ private:
      *     **if other's type won't be appropriate, an exception may be thrown.**
      * @return string the guessed classification of toClassify
      */
-    virtual string classify(const T& toClassify) = 0;
-    virtual void clearData(vector<T*> *data) = 0;
+    virtual string classify(const Classifiable& toClassify) = 0;
+    virtual void clearData(vector<Classifiable*> *data) = 0;
 public:
     virtual void classifyAllTestingData() = 0;
-    virtual vector<string>* getResults() = 0;
+    virtual vector<string>* getResults() const = 0;
+    virtual vector<vector<double>> calculateConfusionMatrix() const = 0;
     /*************GETTERS AND SETTERS***************/
     virtual int getK() const = 0;
     virtual void setK(int k) = 0;
-    virtual vector<T*>* getTrainingData() const = 0;
-    virtual void setTrainingData(vector<T*>* data) = 0;
-    virtual vector<T*>* getTestingData() const = 0;
-    virtual void setTestingData(vector<T*>* data) = 0;
+    virtual vector<Classifiable*>* getTrainingData() const = 0;
+    virtual void setTrainingData(vector<Classifiable*>* data) = 0;
+    virtual vector<Classifiable*>* getTestingData() const = 0;
+    virtual void setTestingData(vector<Classifiable*>* data) = 0;
     virtual void setDistanceCalculatingMethod(const string& type) = 0;
     /** virtual destructor **/
     virtual ~Classifier() = default;
