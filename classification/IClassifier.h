@@ -7,9 +7,9 @@
 #include <map>
 #include <iostream>
 #include "DistanceCalculator.h"
-#include "EuclideanDistance.h"
-#include "ManhattenDistance.h"
-#include "ChebyshevDistance.h"
+#include "dist_strategys/EuclideanDistance.h"
+#include "dist_strategys/ManhattenDistance.h"
+#include "dist_strategys/ChebyshevDistance.h"
 
 using std::vector;
 using std::string;
