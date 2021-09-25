@@ -1,7 +1,7 @@
 #ifndef HW3_KNNCLASSIFIER_H
 #define HW3_KNNCLASSIFIER_H
 
-#include "Classifier.h"
+#include "IClassifier.h"
 
 /**
  * knn classifier.
@@ -9,7 +9,7 @@
  *     1. vector<string>* getCoordinates
  *     2. string getClassification()
  */
-class KnnClassifier : public Classifier {
+class KnnClassifier : public IClassifier {
 private:
     int k;
     // pointer to any type of distance calculator

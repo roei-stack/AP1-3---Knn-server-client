@@ -1,6 +1,6 @@
 #include <iostream>
 #include "classification/Reader.h"
-#include "classification/Classifier.h"
+#include "classification/IClassifier.h"
 #include "classification/KnnClassifier.h"
 #include "sockets/TcpSocket.h"
 #include "sockets/TcpServerSocket.h"

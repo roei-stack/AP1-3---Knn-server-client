@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(hw3 testClassifier.cpp
         classification/Reader.cpp classification/Reader.h
         classification/Classifiable.cpp classification/Classifiable.h
-        classification/Classifier.h
+        classification/IClassifier.h
         classification/KnnClassifier.h
         classification/DistanceCalculator.h
         classification/EuclideanDistance.h
