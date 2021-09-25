@@ -1,10 +1,6 @@
 #ifndef HW3_KNNCLASSIFIER_H
 #define HW3_KNNCLASSIFIER_H
 
-#include <unordered_map>
-#include <ManhattenDistance.h>
-#include <ChebyshevDistance.h>
-#include "EuclideanDistance.h"
 #include "IClassifier.h"
 
 /**
@@ -18,7 +14,6 @@ private:
     int k;
     // pointer to any type of distance calculator
     DistanceCalculator* calculator = new EuclideanDistance();
-
     vector<Classifiable*>* trainingData;
     vector<Classifiable*>* testingData;
     // the classifier's results, in the original order : {class1, class2, ...}
@@ -57,7 +52,7 @@ public:
     vector<string>* getResults() const override;
     int getK() const override;
     void setK(int k) override;
-    std::string getMetricName();
+    string getMetricName() const override;
     vector<Classifiable*>* getTrainingData() const override;
     void setTrainingData(vector<Classifiable*>* data) override;
     vector<Classifiable*>* getTestingData() const override;
@@ -114,25 +109,15 @@ vector <string> *KnnClassifier::getResults() const {
     return this->results;
 }
 
-void KnnClassifier::setDistanceCalculatingMethod(const string& type) {
-    if (!(type == "EUC" || type == "MAN" || type == "CHE")) {
-        throw std::invalid_argument("Invalid distance method : " + type);
+void KnnClassifier::setDistanceCalculatingMethod(const string &type) {
+    DistanceCalculator* c = DistCalcFactory::create(type);
+    if (c == nullptr) {
+        throw std::runtime_error("Invalid calculator type: " + type);
     }
     delete this->calculator;
-    if (type == "EUC") {
-        this->calculator = new EuclideanDistance();
-    }
-    if (type == "MAN") {
-        this->calculator = new ManhattenDistance();
-    }
-    if (type == "CHE") {
-        this->calculator = new ChebyshevDistance();
-    }
+    this->calculator = c;
 }
 
-std::string KnnClassifier::getMetricName() {
-    return this->calculator->metricName();
-}
 
 int KnnClassifier::getK() const {
     return this->k;
@@ -261,6 +246,10 @@ vector<std::pair<string, int>> KnnClassifier::countOccurences() const {
         v.emplace_back(pair.first, pair.second);
     }
     return v;
+}
+
+string KnnClassifier::getMetricName() const {
+    return this->calculator->metricName();
 }
 
 

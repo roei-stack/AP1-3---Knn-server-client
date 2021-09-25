@@ -6,10 +6,9 @@
 #include <algorithm>
 #include <map>
 #include <iostream>
+#include <unordered_map>
+#include "DistCalcFactory.h"
 #include "DistanceCalculator.h"
-#include "EuclideanDistance.h"
-#include "ManhattenDistance.h"
-#include "ChebyshevDistance.h"
 
 using std::vector;
 using std::string;
@@ -36,6 +35,7 @@ public:
     virtual vector<Classifiable*>* getTrainingData() const = 0;
     virtual void setTrainingData(vector<Classifiable*>* data) = 0;
     virtual vector<Classifiable*>* getTestingData() const = 0;
+    virtual string getMetricName() const = 0;
     virtual void setTestingData(vector<Classifiable*>* data) = 0;
     virtual void setDistanceCalculatingMethod(const string& type) = 0;
     /** virtual destructor **/

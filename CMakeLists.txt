@@ -11,11 +11,8 @@ add_executable(hw3 testClassifier.cpp
         classification/IClassifier.h
         classification/KnnClassifier.h
         classification/dist_strategies/DistanceCalculator.h
-        classification/dist_strategies/EuclideanDistance.h
-        classification/dist_strategies/ManhattenDistance.h
-        classification/dist_strategies/ChebyshevDistance.h
         io/DefaultIO.h io/StandardIO.h io/SocketIO.h
         sockets/TcpServerSocket.h sockets/TcpServerSocket.cpp
         sockets/TcpSocket.h sockets/TcpSocket.cpp
         commands/ICommand.h
-        commands/UploadCmd.h commands/UploadCmd.cpp commands/UpdateSettingsCmd.cpp commands/UpdateSettingsCmd.h classification/dist_strategies/DistCalcFactory.cpp classification/dist_strategies/DistCalcFactory.h commands/PrintResultsCmd.cpp commands/PrintResultsCmd.h)
+        commands/UploadCmd.h commands/UploadCmd.cpp commands/UpdateSettingsCmd.cpp commands/UpdateSettingsCmd.h classification/dist_strategies/DistCalcFactory.cpp classification/dist_strategies/DistCalcFactory.h commands/PrintResultsCmd.cpp commands/PrintResultsCmd.h classification/dist_strategies/ManhattenDistance.cpp classification/dist_strategies/ManhattenDistance.h classification/dist_strategies/EuclideanDistance.cpp classification/dist_strategies/EuclideanDistance.h classification/dist_strategies/ChebyshevDistance.cpp classification/dist_strategies/ChebyshevDistance.h)

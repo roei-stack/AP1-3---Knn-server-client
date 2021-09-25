@@ -6,14 +6,11 @@
 #define HW3_UPDATESETTINGSCMD_H
 
 #include "ICommand.h"
-#include "KnnClassifier.h"
-#include "DefaultIO.h"
-#include "DistCalcFactory.h"
 
 class UpdateSettingsCmd : public ICommand {
 private:
     string cmdDescription = "algorithm settings";
-    KnnClassifier* classifier;
+    IClassifier* classifier;
     DefaultIO* dio;
 
 public:

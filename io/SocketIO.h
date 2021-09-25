@@ -3,8 +3,6 @@
 
 #include "DefaultIO.h"
 
-
-
 class SocketIO : public DefaultIO {
 private:
     TcpSocket* socket;

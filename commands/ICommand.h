@@ -5,6 +5,13 @@
 #ifndef HW3_ICOMMAND_H
 #define HW3_ICOMMAND_H
 
+#include <string>
+#include <vector>
+#include <sstream>
+#include "DefaultIO.h"
+#include "DistCalcFactory.h"
+#include "IClassifier.h"
+
 using std::string;
 
 class ICommand {

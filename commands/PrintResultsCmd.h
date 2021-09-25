@@ -5,10 +5,9 @@
 #ifndef HW3_PRINTRESULTSCMD_H
 #define HW3_PRINTRESULTSCMD_H
 
-#include <vector>
-using std::vector;
-#include "IClassifier.h"
 #include "ICommand.h"
+
+using std::vector;
 
 class PrintResultsCmd : public ICommand {
 private:
