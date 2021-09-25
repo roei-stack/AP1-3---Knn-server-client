@@ -1,9 +1,6 @@
 #ifndef HW3_KNNCLASSIFIER_H
 #define HW3_KNNCLASSIFIER_H
 
-#include <ManhattenDistance.h>
-#include <ChebyshevDistance.h>
-#include "EuclideanDistance.h"
 #include "IClassifier.h"
 
 /**
@@ -17,7 +14,6 @@ private:
     int k;
     // pointer to any type of distance calculator
     DistanceCalculator* calculator = new EuclideanDistance();
-
     vector<Classifiable*>* trainingData;
     vector<Classifiable*>* testingData;
     // the classifier's results, in the original order : {class1, class2, ...}
@@ -36,6 +32,9 @@ private:
      */
     void clearData(vector<Classifiable*> *data);
 
+    /** @return list of all possible classifications with how many times they appeared in the testing data */
+    vector<std::pair<string, int>> countOccurences() const;
+
     /**
     * returns the classification of toClassify
     * @param toClassify T has the following method:
@@ -47,16 +46,13 @@ private:
 public:
     KnnClassifier(int k, const string& calc, vector<Classifiable*> *trainingData, vector<Classifiable*> *testingData);
     void classifyAllTestingData() override;
-    vector<vector<double>> calculateConfusionMatrix() const override;
-    /**
-     * @return the classifications in order
-     */
+    vector<std::pair<string, vector<double>>> calculateConfusionMatrix() const override;
 
     /****getters and setters****/
     vector<string>* getResults() const override;
     int getK() const override;
     void setK(int k) override;
-    std::string getMetricName();
+    string getMetricName() const override;
     vector<Classifiable*>* getTrainingData() const override;
     void setTrainingData(vector<Classifiable*>* data) override;
     vector<Classifiable*>* getTestingData() const override;
@@ -71,7 +67,7 @@ KnnClassifier::KnnClassifier(int k, const string& calc, vector<Classifiable*> *t
     this->testingData = testingData;
 }
 
-vector<vector<double>> KnnClassifier::calculateConfusionMatrix() const {
+vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix() const {
     // checking first that the testing data and the results are well-defined
     if (this->testingData->empty() || this->testingData == nullptr) {
         throw std::runtime_error("cannot find testing data");
@@ -80,12 +76,31 @@ vector<vector<double>> KnnClassifier::calculateConfusionMatrix() const {
         throw std::runtime_error("cannot find classifying results");
     }
     // comparing between the testing data and the results...
-    // todo - define the size of N - how many classes there are
-    const int N = 10;
-    vector<vector<double>> confusionMatrix;
+    // list of unique classes
+    vector<std::pair<string, int>> classes = countOccurences();
+    const int N = (int) classes.size();
+    vector<std::pair<string, vector<double>>> confusionMatrix;
     // resizing the 2D matrix to hold NxN values
-    confusionMatrix.resize(N, vector<double>(N));
-    // todo - confusionMatrix[i][j] = 100 * (j-classes that were classified as i-classes)/(total count of j-classes)%
+    // confusionMatrix[i][j] = 100 * (j-classes that were classified as i-classes)/(total count of i-classes)%
+    for (int row = 0; row < N; row++) {
+        const string trueClassification = classes[row].first;
+        const int totalClasses = classes[row].second;
+        vector<double> currentRow(N);
+        for (int col = 0; col < N; col++) {
+            // checking how many (classes[col].first) predicted as (classes[row].first)?
+            const string predictedClassification = classes[col].first;
+            int counter = 0;
+            for (int i = 0; i < this->testingData->size(); i++) {
+                const string tru = this->testingData->at(i)->getClassification();
+                const string predict = this->results->at(i);
+                if (tru == trueClassification && predict == predictedClassification) {
+                    counter++;
+                }
+            }
+            currentRow[col] = 100 * ((double)counter / totalClasses);
+        }
+        confusionMatrix.emplace_back(trueClassification, currentRow);
+    }
     return confusionMatrix;
 }
 
@@ -94,25 +109,15 @@ vector <string> *KnnClassifier::getResults() const {
     return this->results;
 }
 
-void KnnClassifier::setDistanceCalculatingMethod(const string& type) {
-    if (!(type == "EUC" || type == "MAN" || type == "CHE")) {
-        throw std::invalid_argument("Invalid distance method : " + type);
+void KnnClassifier::setDistanceCalculatingMethod(const string &type) {
+    DistanceCalculator* c = DistCalcFactory::create(type);
+    if (c == nullptr) {
+        throw std::runtime_error("Invalid calculator type: " + type);
     }
     delete this->calculator;
-    if (type == "EUC") {
-        this->calculator = new EuclideanDistance();
-    }
-    if (type == "MAN") {
-        this->calculator = new ManhattenDistance();
-    }
-    if (type == "CHE") {
-        this->calculator = new ChebyshevDistance();
-    }
+    this->calculator = c;
 }
 
-std::string KnnClassifier::getMetricName() {
-    return this->calculator->metricName();
-}
 
 int KnnClassifier::getK() const {
     return this->k;
@@ -224,5 +229,28 @@ KnnClassifier::~KnnClassifier() {
     delete this->calculator;
     delete this->results;
 }
+
+vector<std::pair<string, int>> KnnClassifier::countOccurences() const {
+    vector<std::pair<string, int>> v;
+    const int size = (int) this->testingData->size();
+    // occurrences of each string in this->testingData
+    // this efficient solution takes O(n) and uses hashing
+    std::unordered_map<string, int> map;
+    // Iterate through array elements and count frequencies
+    for (int i = 0; i < size; i++) {
+        map[this->testingData->at(i)->getClassification()]++;
+    }
+    // saving the frequencies to the vector
+    v.reserve(map.size());
+    for (std::pair<string, int> pair : map) {
+        v.emplace_back(pair.first, pair.second);
+    }
+    return v;
+}
+
+string KnnClassifier::getMetricName() const {
+    return this->calculator->metricName();
+}
+
 
 #endif //HW3_KNNCLASSIFIER_H

@@ -50,6 +50,7 @@ Classifiable* Reader::parseLine(const std::string& line) {
     */
     char separator = ',';
     std::string currentString;
+    
     while (getline(iterator, currentString, separator)) {
         tokens.push_back(currentString);
     }

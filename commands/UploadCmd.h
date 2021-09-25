@@ -6,7 +6,6 @@
 #define HW3_UPLOADCMD_H
 
 #include "ICommand.h"
-#include "Classifier.h"
 
 class UploadCmd : public ICommand {
 private:
@@ -19,7 +18,7 @@ public:
 
     }
 
-    std::string description() override;
+    string description() override;
 
     void execute() override;
 };

@@ -23,8 +23,8 @@ int main() {
      */
 
 
-    string classifiedPath = "../classification/classified.csv";
-    string unclassifiedPath = "../unclassified.csv";
+    string classifiedPath = "../classification/Iris_train.csv";
+    string unclassifiedPath = "../classification/Iris_test.csv";
     //// initializing the reader for classified and unclassified
     Reader reader(classifiedPath);
     Reader otherReader(unclassifiedPath);
@@ -43,8 +43,26 @@ int main() {
     vector<string>* ans = classifier.getResults();
 
     // printing results
-    for (const string& s : *ans) {
-        std::cout << s << std::endl;
+    for (int i = 0; i < ans->size(); i++) {
+        std::cout << "PREDICTED : " << ans->at(i) << " ************ TRUE CLASS : " << unclassifiedData->at(i)->getClassification() << std::endl;
+    }
+
+
+    // PRINTING THE CONFUSION MATRIX
+    std::vector<std::pair<string,std::vector<double>>> mat = classifier.calculateConfusionMatrix();
+    // TOP LINE
+    std::cout << "\t";
+    for (auto &className : mat) {
+        std::cout << "\t" << className.first;
+    }
+    std::cout <<std::endl;
+    // REST OF THE MATRIX
+    for (auto& i : mat) {
+        std::cout << i.first;
+        for (double x : i.second) {
+            std::cout << "\t" << x << "%";
+        }
+        std::cout << std::endl;
     }
 
     return 0;
