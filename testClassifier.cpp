@@ -23,7 +23,7 @@ int main() {
      */
 
 
-    string classifiedPath = "../classified.csv";
+    string classifiedPath = "../classification/classified.csv";
     string unclassifiedPath = "../unclassified.csv";
     //// initializing the reader for classified and unclassified
     Reader reader(classifiedPath);
