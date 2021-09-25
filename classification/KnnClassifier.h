@@ -2,6 +2,9 @@
 #define HW3_KNNCLASSIFIER_H
 
 #include <unordered_map>
+#include <ManhattenDistance.h>
+#include <ChebyshevDistance.h>
+#include "EuclideanDistance.h"
 #include "IClassifier.h"
 
 /**
@@ -54,6 +57,7 @@ public:
     vector<string>* getResults() const override;
     int getK() const override;
     void setK(int k) override;
+    std::string getMetricName();
     vector<Classifiable*>* getTrainingData() const override;
     void setTrainingData(vector<Classifiable*>* data) override;
     vector<Classifiable*>* getTestingData() const override;
@@ -124,6 +128,10 @@ void KnnClassifier::setDistanceCalculatingMethod(const string& type) {
     if (type == "CHE") {
         this->calculator = new ChebyshevDistance();
     }
+}
+
+std::string KnnClassifier::getMetricName() {
+    return this->calculator->metricName();
 }
 
 int KnnClassifier::getK() const {
@@ -254,5 +262,6 @@ vector<std::pair<string, int>> KnnClassifier::countOccurences() const {
     }
     return v;
 }
+
 
 #endif //HW3_KNNCLASSIFIER_H
