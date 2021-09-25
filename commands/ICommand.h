@@ -5,7 +5,6 @@
 #ifndef HW3_ICOMMAND_H
 #define HW3_ICOMMAND_H
 
-#include <string>
 using std::string;
 
 class ICommand {
