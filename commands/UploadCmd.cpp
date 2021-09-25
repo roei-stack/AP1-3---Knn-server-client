@@ -4,10 +4,21 @@
 
 #include "UploadCmd.h"
 
+UploadCmd::UploadCmd(IClassifier* classifier, DefaultIO *io) {
+    this->classifier = classifier;
+    this->dio = io;
+}
+
 std::string UploadCmd::description() {
-    //todo
+    return this->cmdDescription;
 }
 
 void UploadCmd::execute() {
-    //todo
+    //uploading train
+    this->dio->write("Please upload your local train csv file.");
+
+
+    //uploading test
 }
+
+

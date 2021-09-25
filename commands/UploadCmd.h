@@ -6,19 +6,20 @@
 #define HW3_UPLOADCMD_H
 
 #include "ICommand.h"
+#include "IClassifier.h"
+#include "DefaultIO.h"
+
 
 class UploadCmd : public ICommand {
 private:
-    //todo Classifier<?>* classifier;
-    //todo DefaultIO* dio;
+    string cmdDescription = "upload an unclassified csv data file";
+    IClassifier* classifier;
+    DefaultIO* dio;
 
 public:
-    //todo
-    UploadCmd(){
+    UploadCmd(IClassifier* classifier, DefaultIO* io);
 
-    }
-
-    string description() override;
+    std::string description() override;
 
     void execute() override;
 };
