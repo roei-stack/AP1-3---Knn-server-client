@@ -14,4 +14,6 @@ add_executable(hw3 testClassifier.cpp
         classification/ChebyshevDistance.h
         io/DefaultIO.h io/StandardIO.h io/SocketIO.h
         sockets/TcpServerSocket.h sockets/TcpServerSocket.cpp
-        sockets/TcpSocket.h sockets/TcpSocket.cpp)
+        sockets/TcpSocket.h sockets/TcpSocket.cpp
+        commands/ICommand.h
+        commands/UploadCmd.h)
