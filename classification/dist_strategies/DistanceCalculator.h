@@ -2,6 +2,8 @@
 #define HW3_DISTANCECALCULATOR_H
 
 #include <cmath>
+#include <string>
+#include "Classifiable.h"
 
 using std::vector;
 
