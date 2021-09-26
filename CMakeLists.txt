@@ -23,4 +23,4 @@ add_executable(hw3 testClassifier.cpp
         classification/LineToClassifiableConverter.cpp classification/LineToClassifiableConverter.h
         commands/ConfusionMatrixCmd.cpp commands/ConfusionMatrixCmd.h
         server/IClientHandler.h
-        server/ClassifyingServerCH.h server/ClassifyingServerCH.cpp)
+        server/ClassifyingServerCH.h server/ClassifyingServerCH.cpp server/StandardInOutCLI.cpp server/StandardInOutCLI.h)

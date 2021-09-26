@@ -15,8 +15,9 @@
 using std::string;
 
 class ICommand {
-    virtual string description() = 0;
+public:
     virtual void execute() = 0;
+    virtual string description() = 0;
 };
 
 

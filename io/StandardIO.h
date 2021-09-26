@@ -5,13 +5,14 @@
 #include <iostream>
 
 class StandardIO : public DefaultIO{
+public:
     string read() const override;
     void write(const string& message) const override;
 };
 
 string StandardIO::read() const {
     string message;
-    cin >> message;
+    std::cin >> message;
     return message;
 }
 
