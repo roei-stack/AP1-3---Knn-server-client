@@ -15,4 +15,4 @@ add_executable(hw3 testClassifier.cpp
         sockets/TcpServerSocket.h sockets/TcpServerSocket.cpp
         sockets/TcpSocket.h sockets/TcpSocket.cpp
         commands/ICommand.h
-        commands/UploadCmd.h commands/UploadCmd.cpp commands/UpdateSettingsCmd.cpp commands/UpdateSettingsCmd.h classification/dist_strategies/DistCalcFactory.cpp classification/dist_strategies/DistCalcFactory.h commands/PrintResultsCmd.cpp commands/PrintResultsCmd.h commands/ClassifyCmd.cpp commands/ClassifyCmd.h)
+        commands/UploadCmd.h commands/UploadCmd.cpp commands/UpdateSettingsCmd.cpp commands/UpdateSettingsCmd.h classification/dist_strategies/DistCalcFactory.cpp classification/dist_strategies/DistCalcFactory.h commands/PrintResultsCmd.cpp commands/PrintResultsCmd.h commands/ClassifyCmd.cpp commands/ClassifyCmd.h classification/LineToClassifiableConverter.cpp classification/LineToClassifiableConverter.h)
