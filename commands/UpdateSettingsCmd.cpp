@@ -37,16 +37,19 @@ void UpdateSettingsCmd::execute() {
             validK = false;
         }
 
+        // todo maybe change in classifier setDistanceCalculatingMethod to get a calc obj as param
         bool validMetric = true;
-        DistanceCalculator* distCalc = DistCalcFactory::create(metric);
-        if (distCalc == nullptr) {
-            validMetric = false;
+        if (validK) {
+            try {
+                this->classifier->setDistanceCalculatingMethod(metric);
+            } catch (...) {
+                //todo specify catch
+                validMetric = false;
+            }
         }
-        //todo replace the above to try set distCalc
 
         if (validK && validMetric) {
             this->classifier->setK(k);
-            //todo try set distCalc
 
             this->dio->write("Updated successfully");
         } else if (!validK) {
