@@ -10,13 +10,4 @@ public:
     void write(const string& message) const override;
 };
 
-string StandardIO::read() const {
-    string message;
-    std::cin >> message;
-    return message;
-}
-
-void StandardIO::write(const string &message) const {
-    std::cout << message << std::endl;
-}
 #endif //HW3_STANDARDIO_H

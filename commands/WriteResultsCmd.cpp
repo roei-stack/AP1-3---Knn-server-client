@@ -4,6 +4,11 @@
 
 #include "WriteResultsCmd.h"
 
+WriteResultsCmd::WriteResultsCmd(IClassifier *classifier, DefaultIO *io) {
+    this->classifier = classifier;
+    this->dio = io;
+}
+
 void WriteResultsCmd::execute() {
     vector<string>* results = this->classifier->getResults();
 
@@ -15,3 +20,8 @@ void WriteResultsCmd::execute() {
     }
     this->dio->write("Done.");
 }
+
+string WriteResultsCmd::description() {
+    return this->cmdDescription;
+}
+

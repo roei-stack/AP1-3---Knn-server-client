@@ -15,7 +15,9 @@ private:
     DefaultIO* dio;
 
 public:
+    ClassifyCmd(IClassifier *classifier, DefaultIO *io);
     void execute() override;
+    string description() override;
 };
 
 

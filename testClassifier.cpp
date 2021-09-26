@@ -1,14 +1,29 @@
 #include <iostream>
+#include "CLI.h"
+#include "StandardIO.h"
 #include "classification/Reader.h"
 #include "classification/IClassifier.h"
 #include "classification/KnnClassifier.h"
 #include "sockets/TcpSocket.h"
 #include "sockets/TcpServerSocket.h"
 #include "io/SocketIO.h"
+#include "server/ClassifyingServerCH.h"
 
 using std::string;
 
 int main() {
+
+    ClassifyingServerCH server;
+
+    //TcpServerSocket serverSocket(3257, "127.0.0.1");
+    //TcpSocket* clientSocket = serverSocket.accept();
+
+    DefaultIO* dio = new StandardIO();
+    CLI c(dio);
+    c.start();
+
+
+
 
     /*
     try {
@@ -18,7 +33,6 @@ int main() {
         return 0;
     }
      */
-
     /*
     string msg = "trolololol";
     TcpServerSocket serverSocket(3257, "127.0.0.1");
@@ -29,8 +43,7 @@ int main() {
     socketIo.write(msg);
     cout << serverClientSocket->receive() << endl << "********************" << endl;
      */
-
-
+    /*
     string classifiedPath = "../classification/Iris_train.csv";
     string unclassifiedPath = "../classification/Iris_test.csv";
     //// initializing the reader for classified and unclassified
@@ -73,6 +86,6 @@ int main() {
         }
         std::cout << std::endl;
     }
-
+*/
     return 0;
 }

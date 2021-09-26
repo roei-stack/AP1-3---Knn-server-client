@@ -14,7 +14,9 @@ private:
     DefaultIO* dio;
 
 public:
+    ConfusionMatrixCmd(IClassifier *classifier, DefaultIO *io);
     void execute() override;
+    string description() override;
 };
 
 

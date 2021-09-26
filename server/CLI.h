@@ -10,25 +10,22 @@
 #include "ICommand.h"
 #include "UploadCmd.h"
 #include <vector>
+#include "ConfusionMatrixCmd.h"
+#include "WriteResultsCmd.h"
+#include "UpdateSettingsCmd.h"
+#include "ClassifyCmd.h"
+
 using std::vector;
 
-
-class StandardInOutCLI {
+class CLI {
 private:
-    KnnClassifier* classifier;
-    StandardIO* io;
+    KnnClassifier* classifier = new KnnClassifier;
+    DefaultIO* io;
     vector<ICommand*> commands;
-
     void writeMenu();
 
 public:
-    StandardInOutCLI() {
-        //todo this->classifier = new KnnClassifier();
-        this->io = new StandardIO();
-        //todo this->commands.push_back(new UploadCmd(classifier, io));
-        //todo push_back the rest commands
-    }
-
+    explicit CLI(DefaultIO* io);
     void start();
 };
 

@@ -4,6 +4,11 @@
 
 #include "ConfusionMatrixCmd.h"
 
+ConfusionMatrixCmd::ConfusionMatrixCmd(IClassifier *classifier, DefaultIO *io) {
+    this->classifier = classifier;
+    this->dio = io;
+}
+
 void ConfusionMatrixCmd::execute() {
     auto mat = this->classifier->calculateConfusionMatrix();
     // PRINTING THE CONFUSION MATRIX
@@ -28,3 +33,9 @@ void ConfusionMatrixCmd::execute() {
 
     this->dio->write(sMat);
 }
+
+string ConfusionMatrixCmd::description() {
+    return this->cmdDescription;
+}
+
+

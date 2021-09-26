@@ -4,6 +4,12 @@
 
 #include "UpdateSettingsCmd.h"
 
+UpdateSettingsCmd::UpdateSettingsCmd(IClassifier *classifier, DefaultIO *io) {
+    this->dio = io;
+    this->classifier = classifier;
+}
+
+
 void UpdateSettingsCmd::execute() {
     string toWrite = "The current KNN parameters are: K = " + std::to_string(this->classifier->getK())
                      + ", distance metric = " + this->classifier->getMetricName();
@@ -49,4 +55,8 @@ void UpdateSettingsCmd::execute() {
             this->dio->write("Invalid Metric Name");
         }
     }
+}
+
+string UpdateSettingsCmd::description() {
+    return this->cmdDescription;
 }

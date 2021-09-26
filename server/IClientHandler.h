@@ -6,6 +6,7 @@
 #define HW3_ICLIENTHANDLER_H
 
 #include "TcpSocket.h"
+#include "DefaultIO.h"
 
 class IClientHandler {
 public:

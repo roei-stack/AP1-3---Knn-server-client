@@ -14,7 +14,9 @@ private:
     DefaultIO* dio;
 
 public:
+    UpdateSettingsCmd(IClassifier* classifier, DefaultIO *io);
     void execute() override;
+    string description() override;
 };
 
 
