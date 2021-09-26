@@ -13,7 +13,7 @@ using std::string;
 
 int main() {
 
-    ClassifyingServerCH server;
+    //ClassifyingServerCH server;
 
     //TcpServerSocket serverSocket(3257, "127.0.0.1");
     //TcpSocket* clientSocket = serverSocket.accept();
