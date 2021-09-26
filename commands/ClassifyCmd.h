@@ -10,7 +10,7 @@
 
 class ClassifyCmd : public ICommand {
 private:
-    string cmdDescription = "display results";
+    string cmdDescription = "classify data";
     IClassifier* classifier;
     DefaultIO* dio;
 
