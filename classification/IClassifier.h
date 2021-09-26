@@ -27,7 +27,6 @@ private:
 public:
     virtual void classifyAllTestingData() = 0;
     virtual vector<string>* getResults() const = 0;
-    // todo - confusion matrix
     virtual vector<std::pair<string, vector<double>>> calculateConfusionMatrix() const = 0;
     /*************GETTERS AND SETTERS***************/
     virtual int getK() const = 0;
