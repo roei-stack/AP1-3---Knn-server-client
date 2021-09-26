@@ -15,7 +15,7 @@ void CLI::start() {
     writeMenu();
     string in = this->io->read();
     int option = std::stoi(in);
-    while (option != this->commands.size()) {
+    while (option != this->commands.size() + 1) {
         ICommand* toExecute = this->commands[option - 1];
         toExecute->execute();
 
