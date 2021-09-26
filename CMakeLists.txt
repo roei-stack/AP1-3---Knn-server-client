@@ -25,4 +25,4 @@ add_executable(hw3 testClassifier.cpp
         server/ClassifyingServerCH.h server/ClassifyingServerCH.cpp server/StandardInOutCLI.cpp
         server/StandardInOutCLI.h classification/KnnClassifier.cpp classification/KnnClassifier.h
         classification/dist_strategies/EuclideanDistance.cpp classification/dist_strategies/ManhattenDistance.cpp
-        classification/dist_strategies/ChebyshevDistance.cpp)
+        classification/dist_strategies/ChebyshevDistance.cpp io/SocketIO.cpp)

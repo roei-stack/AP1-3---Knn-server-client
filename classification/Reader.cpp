@@ -8,7 +8,7 @@ Reader::Reader(const std::string& filePath) {
     this->file.open(filePath);
     // taking care of bad inputs
     if (!this->file.is_open()) {
-        throw std::invalid_argument("Failed to initialize file reader at path " + filePath);
+        throw std::runtime_error("Failed to initialize file reader at path " + filePath);
     }
 }
 

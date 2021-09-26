@@ -10,6 +10,14 @@ using std::string;
 
 int main() {
 
+    /*
+    try {
+        throw std::runtime_error("Error!");
+    } catch (const std::runtime_error& e) {
+        std::cout << e.what() << std::endl;
+        return 0;
+    }
+     */
 
     /*
     string msg = "trolololol";
@@ -36,9 +44,10 @@ int main() {
 
 
     // creating classifier, classifying all and getting results
-    KnnClassifier classifier(5, "EUC", reinterpret_cast<vector<struct Classifiable *> *>(classifiedData),
-                             reinterpret_cast<vector<struct Classifiable *> *>(unclassifiedData));
-
+    KnnClassifier classifier;
+    classifier.setTrainingData(classifiedData);
+    classifier.setTestingData(unclassifiedData);
+    classifier.setK(5);
     classifier.classifyAllTestingData();
     vector<string>* ans = classifier.getResults();
 

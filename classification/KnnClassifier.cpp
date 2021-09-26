@@ -1,18 +1,12 @@
 
 #include "KnnClassifier.h"
 
-KnnClassifier::KnnClassifier() {
-    this->k = 5;
-    this->trainingData = nullptr;
-    this->testingData = nullptr;
-}
-
 vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix() const {
     // checking first that the testing data and the results are well-defined
-    if (this->testingData->empty() || this->testingData == nullptr) {
+    if (this->testingData->empty()) {
         throw std::runtime_error("cannot find testing data");
     }
-    if (this->results->empty() || this->results == nullptr) {
+    if (this->results->empty()) {
         throw std::runtime_error("cannot find classifying results");
     }
     // comparing between the testing data and the results...
@@ -64,8 +58,8 @@ int KnnClassifier::getK() const {
 }
 
 void KnnClassifier::setK(int newK) {
-    if (k > 10 || k < 1) {
-        throw std::invalid_argument(&"Invalid k value : " [k]);
+    if (newK > 10 || newK < 1) {
+        throw std::runtime_error("K must be in range 1-10 inclusive");
     }
     this->k = newK;
 }
@@ -75,7 +69,7 @@ vector<Classifiable*> *KnnClassifier::getTrainingData() const {
 }
 
 void KnnClassifier::setTrainingData(vector<Classifiable*> *data) {
-    this->trainingData = data;
+    this->resetAndCopyData(this->trainingData, data);
 }
 
 
@@ -84,7 +78,7 @@ vector<Classifiable*> *KnnClassifier::getTestingData() const {
 }
 
 void KnnClassifier::setTestingData(vector<Classifiable*> *data) {
-    this->testingData = data;
+    this->resetAndCopyData(this->testingData, data);
 }
 
 /***********************************************************************************/
@@ -137,10 +131,10 @@ string KnnClassifier::chooseBestClassification() {
 }
 
 void KnnClassifier::classifyAllTestingData() {
-    if (this->trainingData->empty() || this->trainingData == nullptr) {
+    if (this->trainingData->empty()) {
         throw std::runtime_error("Training data is uninitialized or empty");
     }
-    if (this->testingData->empty() || this->testingData == nullptr) {
+    if (this->testingData->empty()) {
         throw std::runtime_error("Testing data is uninitialized or empty");
     }
     // removing previous results
@@ -161,14 +155,6 @@ void KnnClassifier::clearData(vector<Classifiable*> *data) {
     data->clear();
 }
 
-KnnClassifier::~KnnClassifier() {
-    clearData(this->trainingData);
-    delete this->trainingData;
-    clearData(this->testingData);
-    delete this->testingData;
-    delete this->calculator;
-    delete this->results;
-}
 
 vector<std::pair<string, int>> KnnClassifier::countOccurences() const {
     vector<std::pair<string, int>> v;
@@ -192,3 +178,26 @@ string KnnClassifier::getMetricName() const {
     return this->calculator->metricName();
 }
 
+void KnnClassifier::resetAndCopyData(vector<Classifiable *> *oldData, vector<Classifiable *> *newData) {
+    if (oldData == newData) {
+        //same data, no changes/deletions are required
+        return;
+    }
+    if (newData == nullptr) {
+        throw std::runtime_error("The new data is undefined (nullptr)");
+    }
+    // cleaning the vector
+    this->clearData(oldData);
+    std::copy(newData->begin(), newData->end(), std::back_inserter(*oldData));
+    //saving space
+    oldData->shrink_to_fit();
+}
+
+KnnClassifier::~KnnClassifier() {
+    clearData(this->trainingData);
+    delete this->trainingData;
+    clearData(this->testingData);
+    delete this->testingData;
+    delete this->calculator;
+    delete this->results;
+}

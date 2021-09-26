@@ -11,11 +11,12 @@
  */
 class KnnClassifier : public IClassifier {
 private:
-    int k;
+    // default settings: k = 5, euclidean distance method
+    int k = 5;
     // pointer to any type of distance calculator
     DistanceCalculator* calculator = new EuclideanDistance();
-    vector<Classifiable*>* trainingData;
-    vector<Classifiable*>* testingData;
+    vector<Classifiable*>* trainingData = new vector<Classifiable*>;
+    vector<Classifiable*>* testingData = new vector<Classifiable*>;
     // the classifier's results, in the original order : {class1, class2, ...}
     vector<string>* results = new vector<string>();
 
@@ -31,6 +32,8 @@ private:
      * now to vector is ready to reassign
      */
     void clearData(vector<Classifiable*> *data);
+    /** used by setTest and setTrain functions */
+    void resetAndCopyData(vector<Classifiable *> *oldData, vector<Classifiable *> *newData);
 
     /** @return list of all possible classifications with how many times they appeared in the testing data */
     vector<std::pair<string, int>> countOccurences() const;
@@ -43,10 +46,9 @@ private:
     string classify(const Classifiable& toClassify);
 
 public:
-    KnnClassifier();
+    KnnClassifier() = default;
     void classifyAllTestingData() override;
     vector<std::pair<string, vector<double>>> calculateConfusionMatrix() const override;
-
     /****getters and setters****/
     vector<string>* getResults() const override;
     int getK() const override;
