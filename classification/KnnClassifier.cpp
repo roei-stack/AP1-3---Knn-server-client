@@ -1,10 +1,10 @@
 
 #include "KnnClassifier.h"
 
-KnnClassifier::KnnClassifier(int k, const string& calc, vector<Classifiable*> *trainingData, vector<Classifiable*> *testingData) : k(k) {
-    this->setDistanceCalculatingMethod(calc);
-    this->trainingData = trainingData;
-    this->testingData = testingData;
+KnnClassifier::KnnClassifier() {
+    this->k = 5;
+    this->trainingData = nullptr;
+    this->testingData = nullptr;
 }
 
 vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix() const {

@@ -14,16 +14,6 @@ using std::vector;
 using std::string;
 
 class IClassifier {
-private:
-    /**
-     * returns the classification of c
-     * @param toClassify to classify. must be an appropriate Classifiable such that
-     *     c knows how to calculate it's coordinates in this Classifier's dataset.
-     *     probably, it will have to be from the same type as them.
-     *     **if other's type won't be appropriate, an exception may be thrown.**
-     * @return string the guessed classification of toClassify
-     */
-    virtual string classify(const Classifiable& toClassify) = 0;
 public:
     virtual void classifyAllTestingData() = 0;
     virtual vector<string>* getResults() const = 0;

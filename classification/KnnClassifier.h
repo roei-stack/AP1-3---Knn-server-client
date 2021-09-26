@@ -37,14 +37,13 @@ private:
 
     /**
     * returns the classification of toClassify
-    * @param toClassify T has the following method:
-     *     1. vector<double> getCoordinates()
+    * @param toClassify Classifiable to classify
     * @return string
     */
-    string classify(const Classifiable& toClassify) override;
+    string classify(const Classifiable& toClassify);
 
 public:
-    KnnClassifier(int k, const string& calc, vector<Classifiable*> *trainingData, vector<Classifiable*> *testingData);
+    KnnClassifier();
     void classifyAllTestingData() override;
     vector<std::pair<string, vector<double>>> calculateConfusionMatrix() const override;
 
