@@ -5,7 +5,6 @@
 #ifndef HW3_CONFUSIONMATRIXCMD_H
 #define HW3_CONFUSIONMATRIXCMD_H
 
-#include <DefaultIO.h>
 #include "ICommand.h"
 
 class ConfusionMatrixCmd : public ICommand {

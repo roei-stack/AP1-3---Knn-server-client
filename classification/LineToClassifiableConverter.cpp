@@ -2,7 +2,6 @@
 // Created by user on 9/26/2021.
 //
 
-#include <sstream>
 #include "LineToClassifiableConverter.h"
 
 Classifiable *LineToClassifiableConverter::convert(const std::string &line) {

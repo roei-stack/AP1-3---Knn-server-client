@@ -5,7 +5,7 @@
 #ifndef HW3_LINETOCLASSIFIABLECONVERTER_H
 #define HW3_LINETOCLASSIFIABLECONVERTER_H
 
-
+#include <sstream>
 #include "Classifiable.h"
 
 class LineToClassifiableConverter {

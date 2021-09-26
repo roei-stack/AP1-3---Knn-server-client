@@ -9,7 +9,6 @@ add_executable(hw3 testClassifier.cpp
         classification/Reader.cpp classification/Reader.h
         classification/Classifiable.cpp classification/Classifiable.h
         classification/IClassifier.h
-        classification/KnnClassifier.h
         classification/dist_strategies/DistanceCalculator.h
         io/DefaultIO.h io/StandardIO.h io/SocketIO.h
         sockets/TcpServerSocket.h sockets/TcpServerSocket.cpp
@@ -23,4 +22,7 @@ add_executable(hw3 testClassifier.cpp
         classification/LineToClassifiableConverter.cpp classification/LineToClassifiableConverter.h
         commands/ConfusionMatrixCmd.cpp commands/ConfusionMatrixCmd.h
         server/IClientHandler.h
-        server/ClassifyingServerCH.h server/ClassifyingServerCH.cpp server/StandardInOutCLI.cpp server/StandardInOutCLI.h)
+        server/ClassifyingServerCH.h server/ClassifyingServerCH.cpp server/StandardInOutCLI.cpp
+        server/StandardInOutCLI.h classification/KnnClassifier.cpp classification/KnnClassifier.h
+        classification/dist_strategies/EuclideanDistance.cpp classification/dist_strategies/ManhattenDistance.cpp
+        classification/dist_strategies/ChebyshevDistance.cpp)

@@ -5,8 +5,6 @@
 #ifndef HW3_CLASSIFYCMD_H
 #define HW3_CLASSIFYCMD_H
 
-#include "DefaultIO.h"
-#include "IClassifier.h"
 #include "ICommand.h"
 
 

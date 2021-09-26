@@ -3,7 +3,6 @@
 //
 
 #include "UploadCmd.h"
-#include "LineToClassifiableConverter.h"
 
 UploadCmd::UploadCmd(IClassifier* classifier, DefaultIO *io) {
     this->classifier = classifier;
