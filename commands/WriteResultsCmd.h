@@ -9,6 +9,9 @@
 
 using std::vector;
 
+/**
+ * commands 4 & 5
+ */
 class WriteResultsCmd : public ICommand {
 private:
     string cmdDescription = "display results";
