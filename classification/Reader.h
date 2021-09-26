@@ -14,7 +14,6 @@ class Reader {
 private:
     std::ifstream file;
     void close();
-    Classifiable* parseLine(const std::string& line);
 public:
     explicit Reader(const std::string& filePath);
     std::vector<Classifiable*>* buildDataset();
