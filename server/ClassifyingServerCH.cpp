@@ -4,7 +4,8 @@
 
 #include "ClassifyingServerCH.h"
 
-void ClassifyingServerCH::HandleClient(Socket* clientSocket) {
+void ClassifyingServerCH::HandleClient(TcpSocket* clientSocket) {
+    //todo
 
 
 

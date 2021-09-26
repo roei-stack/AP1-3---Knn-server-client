@@ -5,11 +5,11 @@
 #ifndef HW3_ICLIENTHANDLER_H
 #define HW3_ICLIENTHANDLER_H
 
-//#include "Socket.h"
+#include "TcpSocket.h"
 
 class IClientHandler {
 public:
- //   virtual void HandleClient(Socket* clientSocket) = 0;
+    virtual void HandleClient(TcpSocket* clientSocket) = 0;
 };
 
 

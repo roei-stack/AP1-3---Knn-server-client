@@ -10,7 +10,7 @@
 class ClassifyingServerCH : public IClientHandler {
 
 public:
-    void HandleClient(Socket* clientSocket) override;
+    void HandleClient(TcpSocket* clientSocket) override;
 };
 
 
