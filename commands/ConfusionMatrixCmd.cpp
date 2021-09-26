@@ -10,7 +10,7 @@ ConfusionMatrixCmd::ConfusionMatrixCmd(IClassifier *classifier, DefaultIO *io) {
 }
 
 void ConfusionMatrixCmd::execute() {
-    auto mat = this->classifier->calculateConfusionMatrix();
+    vector<std::pair<string, vector<double>>> mat = this->classifier->calculateConfusionMatrix();
     // PRINTING THE CONFUSION MATRIX
     // TOP LINE
     std::stringstream ssMat;
