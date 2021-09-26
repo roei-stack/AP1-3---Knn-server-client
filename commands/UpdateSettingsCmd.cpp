@@ -13,20 +13,18 @@ void UpdateSettingsCmd::execute() {
     if (!(response.empty())) {
         // we will split the response using the ' ' (space) character as a separator
         // the first token should be K and the second should be the metric name
-
         int k;
         string kStr, metric;
-        std::stringstream iterator(response);
         char separator = ' ';
-        //todo is correct?
-        getline(iterator, kStr, separator);
-        metric = iterator.str();
+        size_t pos = response.find_first_of(separator);
+        kStr = response.substr(0, pos);
+        metric = response.substr(pos + 1);
 
         bool validK = true;
         try {
             k = std::stoi(kStr);
-            // kStr = 123hgkjglk is not valid
-            if (std::to_string(k) != kStr) {
+            // kStr = 123hgkjglk is not valid, k must be between 1 to 10
+            if (std::to_string(k) != kStr || !(k>=1 && k <=10)) {
                 validK = false;
             }
         } catch (...) {
@@ -38,10 +36,11 @@ void UpdateSettingsCmd::execute() {
         if (distCalc == nullptr) {
             validMetric = false;
         }
+        //todo replace the above to try set distCalc
 
         if (validK && validMetric) {
             this->classifier->setK(k);
-            //todo set distCalc
+            //todo try set distCalc
 
             this->dio->write("Updated successfully");
         } else if (!validK) {
