@@ -16,6 +16,8 @@ private:
     IClassifier* classifier;
     DefaultIO* dio;
 
+    std::vector<Classifiable*>* receiveDataset();
+
 public:
     UploadCmd(IClassifier* classifier, DefaultIO* io);
 
