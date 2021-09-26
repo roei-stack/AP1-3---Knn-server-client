@@ -28,8 +28,7 @@ void ConfusionMatrixCmd::execute() {
         ssMat << std::endl;
     }
 
-    string sMat;
-    ssMat >> sMat;
+    string sMat = ssMat.str();
 
     this->dio->write(sMat);
 }
