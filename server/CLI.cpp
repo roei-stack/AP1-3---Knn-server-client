@@ -13,12 +13,15 @@ CLI::CLI(DefaultIO *io) {
 
 void CLI::start() {
     writeMenu();
-    string in;
-    in = this->io->read();
+    string in = this->io->read();
     int option = std::stoi(in);
     while (option != this->commands.size()) {
         ICommand* toExecute = this->commands[option - 1];
         toExecute->execute();
+
+        writeMenu();
+        in = this->io->read();
+        option = std::stoi(in);
     }
 }
 
