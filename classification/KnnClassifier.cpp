@@ -40,6 +40,9 @@ vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix
 
 /******************************GETTERS AND SETTERS**********************************/
 vector <string> *KnnClassifier::getResults() const {
+    if (this->results->empty()) {
+        throw std::runtime_error("No results found!");
+    }
     return this->results;
 }
 
