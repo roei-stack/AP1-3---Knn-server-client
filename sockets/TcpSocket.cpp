@@ -30,7 +30,7 @@ std::string TcpSocket::receive() const {
     char buffer[BUFFER]{};
     long bytesRead = ::recv(this->socketId, buffer, BUFFER, 0);
     if (bytesRead < 0) {
-        throw std::runtime_error("failed receiving the message");
+        throw std::runtime_error("Error: failed receiving the message");
     }
     // converting to string type
     std::string str(buffer);

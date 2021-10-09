@@ -1,4 +1,3 @@
-
 #include "StandardIO.h"
 
 string StandardIO::read() const {

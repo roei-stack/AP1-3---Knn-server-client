@@ -32,7 +32,6 @@ TcpSocket *TcpServerSocket::accept() {
         perror("error accepting client");
     }
     this->clientSocket = TcpSocket(client_sock);
-    this->clientSocket.send("Tcp Server ready to receive a message");
     return &this->clientSocket;
 }
 

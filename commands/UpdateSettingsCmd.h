@@ -12,7 +12,7 @@ private:
     string cmdDescription = "algorithm settings";
     IClassifier* classifier;
     DefaultIO* dio;
-
+    std::string& rtrim(std::string &s);
 public:
     UpdateSettingsCmd(IClassifier* classifier, DefaultIO *io);
     void execute() override;

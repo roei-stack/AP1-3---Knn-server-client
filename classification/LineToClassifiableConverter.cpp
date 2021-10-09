@@ -4,7 +4,7 @@
 
 #include "LineToClassifiableConverter.h"
 
-Classifiable *LineToClassifiableConverter::convert(const std::string &line) {
+Classifiable *LineToClassifiableConverter::convert(const std::string &line, int errorCode) {
     std::vector<double> coordinates;
     std::string classification;
     // we will iterate over the line using the ',' character as our separator
@@ -25,7 +25,8 @@ Classifiable *LineToClassifiableConverter::convert(const std::string &line) {
     // the number of coordinates is the amount of tokens - 1 (because the last token is the classification)
     int amountOfCoordinates = (int) tokens.size() - 1;
     if (amountOfCoordinates <= 0) {
-        throw std::runtime_error("could not parse line" + line);
+        throw std::runtime_error("Error: could not parse line #" + std::to_string(errorCode) + "->\"" + line + "\"");
+
     }
     coordinates.reserve(amountOfCoordinates);
     for (int i = 0; i < amountOfCoordinates; i++) {

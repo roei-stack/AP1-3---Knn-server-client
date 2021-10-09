@@ -14,7 +14,6 @@ using std::stringstream;
 class SocketIO : public DefaultIO {
 private:
     TcpSocket* socket;
-    vector<string> lines;
 public:
     explicit SocketIO(TcpSocket* tcpSocket);
     string read() const override;

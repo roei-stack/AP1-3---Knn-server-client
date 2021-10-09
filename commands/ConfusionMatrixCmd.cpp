@@ -1,7 +1,3 @@
-//
-// Created by user on 9/26/2021.
-//
-
 #include "ConfusionMatrixCmd.h"
 
 ConfusionMatrixCmd::ConfusionMatrixCmd(IClassifier *classifier, DefaultIO *io) {
@@ -10,7 +6,14 @@ ConfusionMatrixCmd::ConfusionMatrixCmd(IClassifier *classifier, DefaultIO *io) {
 }
 
 void ConfusionMatrixCmd::execute() {
-    vector<std::pair<string, vector<double>>> mat = this->classifier->calculateConfusionMatrix();
+    vector<std::pair<string, vector<double>>> mat;
+    try {
+        mat = this->classifier->calculateConfusionMatrix();
+    }
+    catch (std::exception& e) {
+        this->dio->write(e.what());
+        return;
+    }
     // PRINTING THE CONFUSION MATRIX
     // TOP LINE
     std::stringstream ssMat;
@@ -27,9 +30,7 @@ void ConfusionMatrixCmd::execute() {
         }
         ssMat << std::endl;
     }
-
     string sMat = ssMat.str();
-
     this->dio->write(sMat);
 }
 

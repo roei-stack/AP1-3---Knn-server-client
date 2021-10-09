@@ -8,7 +8,7 @@ Reader::Reader(const std::string& filePath) {
     this->file.open(filePath);
     // taking care of bad inputs
     if (!this->file.is_open()) {
-        throw std::runtime_error("Failed to initialize file reader at path " + filePath);
+        throw std::runtime_error("Error: Failed to initialize file reader at path " + filePath);
     }
 }
 
@@ -20,9 +20,11 @@ std::vector<Classifiable*>* Reader::buildDataset() {
     std::vector<Classifiable*> *data;
     data = new std::vector<Classifiable*>;
     std::string line;
+    int lineCounter = 0;
     while (this->file >> line) {
-        Classifiable* classifiable = LineToClassifiableConverter::convert(line);
+        Classifiable* classifiable = LineToClassifiableConverter::convert(line, lineCounter);
         data->push_back(classifiable);
+        lineCounter++;
     }
     // Requests the container to reduce its capacity to fit its size, so no memory is wasted
     data->shrink_to_fit();

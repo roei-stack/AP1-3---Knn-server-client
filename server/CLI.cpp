@@ -6,34 +6,43 @@ CLI::CLI(DefaultIO *io) {
     this->commands.push_back(new UpdateSettingsCmd(classifier, io));
     this->commands.push_back(new ClassifyCmd(classifier, io));
     this->commands.push_back(new WriteResultsCmd(classifier, io));
-    // downloadCmd
+    // TODO downloadCmd
     this->commands.push_back(new ConfusionMatrixCmd(classifier, io));
-
 }
 
 void CLI::start() {
-    writeMenu();
-    string in = this->io->read();
-    int option = std::stoi(in);
-    while (option != this->commands.size() + 1) {
+    this->writeMenu();
+    while (true) {
+        string in = this->io->read();
+        int option;
+        try {
+            option = std::stoi(in);
+            if (option < 1 || option > this->commands.size() + 1) {
+                throw 0;
+            }
+        } catch (...) {
+            this->io->write("Invalid command!");
+            continue;
+        }
+        if (option == this->commands.size() + 1) {
+            this->io->write("exit");
+            // todo clear resources
+            break;
+        }
         ICommand* toExecute = this->commands[option - 1];
         toExecute->execute();
-
-        writeMenu();
-        in = this->io->read();
-        option = std::stoi(in);
     }
 }
 
 void CLI::writeMenu() {
-    this->io->write("Welcome to the Knn Classifier CLI. Please choose an option:");
+    std::stringstream stream;
+    stream << "Welcome to the Knn Classifier CLI. Please choose an option:" << std::endl;
     int i = 1;
     for (ICommand* command : this->commands) {
-        string toWrite = std::to_string(i) + ".\t" + command->description();
-        this->io->write(toWrite);
+        stream << std::to_string(i) + ".\t" + command->description() << std::endl;
         i++;
     }
-    string toWrite = std::to_string(i) + ".\texit";
-    this->io->write(toWrite);
+    stream << std::to_string(i) + ".\texit";
+    this->io->write(stream.str());
 }
 

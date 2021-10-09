@@ -10,15 +10,21 @@ WriteResultsCmd::WriteResultsCmd(IClassifier *classifier, DefaultIO *io) {
 }
 
 void WriteResultsCmd::execute() {
-    vector<string>* results = this->classifier->getResults();
-
+    vector<string> *results;
+    try {
+         results = this->classifier->getResults();
+    } catch (std::exception& e) {
+        this->dio->write(e.what());
+        return;
+    }
+    std::stringstream content;
     int i = 1;
     for (const string& s : *results) {
-        string toPrint = std::to_string(i) + "\t" + s;
-        this->dio->write(toPrint);
+        content << std::to_string(i) + "\t" + s << std::endl;
         i++;
     }
-    this->dio->write("Done.");
+    content << "Done.";
+    this->dio->write(content.str());
 }
 
 string WriteResultsCmd::description() {

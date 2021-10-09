@@ -16,7 +16,7 @@ public:
      * @return a pointer to classified object
      * remember to free the database
     */
-    static Classifiable* convert(const std::string& line);
+    static Classifiable* convert(const std::string& line, int errorCode);
 };
 
 

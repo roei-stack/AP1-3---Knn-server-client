@@ -1,6 +1,3 @@
-//
-// Created by user on 9/24/2021.
-//
 
 #ifndef HW3_ICLIENTHANDLER_H
 #define HW3_ICLIENTHANDLER_H

@@ -1,7 +1,3 @@
-//
-// Created by user on 9/25/2021.
-//
-
 #include "UpdateSettingsCmd.h"
 
 UpdateSettingsCmd::UpdateSettingsCmd(IClassifier *classifier, DefaultIO *io) {
@@ -9,13 +5,13 @@ UpdateSettingsCmd::UpdateSettingsCmd(IClassifier *classifier, DefaultIO *io) {
     this->classifier = classifier;
 }
 
-
 void UpdateSettingsCmd::execute() {
     string toWrite = "The current KNN parameters are: K = " + std::to_string(this->classifier->getK())
                      + ", distance metric = " + this->classifier->getMetricName();
     this->dio->write(toWrite);
 
     string response = this->dio->read();
+    response = rtrim(response);
     if (!(response.empty())) {
         // we will split the response using the ' ' (space) character as a separator
         // the first token should be K and the second should be the metric name
@@ -37,13 +33,11 @@ void UpdateSettingsCmd::execute() {
             validK = false;
         }
 
-        // todo maybe change in classifier setDistanceCalculatingMethod to get a calc obj as param
         bool validMetric = true;
         if (validK) {
             try {
                 this->classifier->setDistanceCalculatingMethod(metric);
             } catch (...) {
-                //todo specify catch
                 validMetric = false;
             }
         }
@@ -62,4 +56,12 @@ void UpdateSettingsCmd::execute() {
 
 string UpdateSettingsCmd::description() {
     return this->cmdDescription;
+}
+
+// remove all whitespaces from the right
+std::string &UpdateSettingsCmd::rtrim(string &s) {
+    auto it = std::find_if(s.rbegin(), s.rend(), [](char c) {
+        return !std::isspace<char>(c, std::locale::classic());});
+    s.erase(it.base(), s.end());
+    return s;
 }

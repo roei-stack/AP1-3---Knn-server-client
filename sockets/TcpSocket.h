@@ -1,7 +1,3 @@
-//
-// Created by user on 8/26/2021.
-//
-
 #ifndef ASS2_TCPSOCKET_H
 #define ASS2_TCPSOCKET_H
 
@@ -12,7 +8,7 @@
 #include <unistd.h>
 #include <cstring>
 
-#define BUFFER 200
+#define BUFFER 4096
 
 class TcpSocket {
 private:

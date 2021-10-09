@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 #include "CLI.h"
 #include "StandardIO.h"
 #include "classification/Reader.h"
@@ -10,30 +11,29 @@
 #include "server/ClassifyingServerCH.h"
 
 using std::string;
+using std::thread;
+using namespace std;
+
+void handle(TcpSocket* clientSock) {
+    //handle... todo multithreading
+    SocketIO io(clientSock);
+    CLI cli(&io);
+    cli.start();
+    clientSock->close();
+}
 
 int main() {
-
-    //ClassifyingServerCH server;
-
-    //TcpServerSocket serverSocket(3257, "127.0.0.1");
-    //TcpSocket* clientSocket = serverSocket.accept();
-
-    DefaultIO* dio = new StandardIO();
-    CLI c(dio);
-    c.start();
-
-
-
-
-    /*
-    try {
-        throw std::runtime_error("Error!");
-    } catch (const std::runtime_error& e) {
-        std::cout << e.what() << std::endl;
-        return 0;
+    TcpServerSocket server(6854, "127.0.0.1");
+    // todo get each client it's dedicated thread
+    TcpSocket* talkWithClient;
+    while (true) {
+        // main thread will constantly listen on incoming clients
+        talkWithClient = server.accept();
+        std::thread thread(handle, talkWithClient);
+        break;
     }
-     */
-    /*
+}
+/*
     string msg = "trolololol";
     TcpServerSocket serverSocket(3257, "127.0.0.1");
     TcpSocket client("127.0.0.1", 3257);
@@ -42,8 +42,7 @@ int main() {
     SocketIO socketIo(&client);
     socketIo.write(msg);
     cout << serverClientSocket->receive() << endl << "********************" << endl;
-     */
-    /*
+     *****************************************************************
     string classifiedPath = "../classification/Iris_train.csv";
     string unclassifiedPath = "../classification/Iris_test.csv";
     //// initializing the reader for classified and unclassified
@@ -87,5 +86,3 @@ int main() {
         std::cout << std::endl;
     }
 */
-    return 0;
-}

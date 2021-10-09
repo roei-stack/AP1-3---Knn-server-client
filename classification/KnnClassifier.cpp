@@ -1,13 +1,12 @@
-
 #include "KnnClassifier.h"
 
 vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix() const {
     // checking first that the testing data and the results are well-defined
     if (this->testingData->empty()) {
-        throw std::runtime_error("cannot find testing data");
+        throw std::runtime_error("Error: cannot find testing data");
     }
-    if (this->results->empty()) {
-        throw std::runtime_error("cannot find classifying results");
+    else if (this->results->empty()) {
+        throw std::runtime_error("Error: cannot find classifying results");
     }
     // comparing between the testing data and the results...
     // list of unique classes
@@ -41,7 +40,7 @@ vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix
 /******************************GETTERS AND SETTERS**********************************/
 vector <string> *KnnClassifier::getResults() const {
     if (this->results->empty()) {
-        throw std::runtime_error("No results found!");
+        throw std::runtime_error("Error: No results found!");
     }
     return this->results;
 }
@@ -49,7 +48,7 @@ vector <string> *KnnClassifier::getResults() const {
 void KnnClassifier::setDistanceCalculatingMethod(const string &type) {
     DistanceCalculator* c = DistCalcFactory::create(type);
     if (c == nullptr) {
-        throw std::runtime_error("Invalid calculator type: " + type);
+        throw std::runtime_error("Error: Invalid calculator type: " + type);
     }
     delete this->calculator;
     this->calculator = c;
@@ -62,7 +61,7 @@ int KnnClassifier::getK() const {
 
 void KnnClassifier::setK(int newK) {
     if (newK > 10 || newK < 1) {
-        throw std::runtime_error("K must be in range 1-10 inclusive");
+        throw std::runtime_error("Error: K must be in range 1-10 inclusive");
     }
     this->k = newK;
 }
@@ -135,10 +134,10 @@ string KnnClassifier::chooseBestClassification() {
 
 void KnnClassifier::classifyAllTestingData() {
     if (this->trainingData->empty()) {
-        throw std::runtime_error("Training data is uninitialized or empty");
+        throw std::runtime_error("Error: Training data is uninitialized or empty");
     }
     if (this->testingData->empty()) {
-        throw std::runtime_error("Testing data is uninitialized or empty");
+        throw std::runtime_error("Error: Testing data is uninitialized or empty");
     }
     // removing previous results
     this->results->clear();
@@ -187,7 +186,7 @@ void KnnClassifier::resetAndCopyData(vector<Classifiable *> *oldData, vector<Cla
         return;
     }
     if (newData == nullptr) {
-        throw std::runtime_error("The new data is undefined (nullptr)");
+        throw std::runtime_error("Error: The new data is undefined (nullptr)");
     }
     // cleaning the vector
     this->clearData(oldData);
