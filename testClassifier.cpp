@@ -1,36 +1,39 @@
-#include <iostream>
+//#include <iostream>
 #include <thread>
+#include "ClassifyingServerCH.h"
 #include "CLI.h"
-#include "StandardIO.h"
-#include "classification/Reader.h"
-#include "classification/IClassifier.h"
-#include "classification/KnnClassifier.h"
+//#include "StandardIO.h"
+//#include "classification/Reader.h"
+//#include "classification/IClassifier.h"
+//#include "classification/KnnClassifier.h"
 #include "sockets/TcpSocket.h"
 #include "sockets/TcpServerSocket.h"
 #include "io/SocketIO.h"
-#include "server/ClassifyingServerCH.h"
+//#include "server/ClassifyingServerCH.h"
 
 using std::string;
 using std::thread;
 using namespace std;
 
-void handle(TcpSocket* clientSock) {
-    //handle... todo multithreading
-    SocketIO io(clientSock);
+void handle(TcpSocket clientSock) {
+    SocketIO io(&clientSock);
     CLI cli(&io);
     cli.start();
-    clientSock->close();
+    clientSock.close();
 }
 
 int main() {
-    TcpServerSocket server(6854, "127.0.0.1");
+    TcpServerSocket server(12644, "127.0.0.1");
     // todo get each client it's dedicated thread
-    TcpSocket* talkWithClient;
+    std::vector<TcpSocket*> clients;
     while (true) {
-        // main thread will constantly listen on incoming clients
-        talkWithClient = server.accept();
-        std::thread thread(handle, talkWithClient);
-        break;
+        // socket object to receive incoming clients
+        TcpSocket client = server.accept();
+        // displaying that new client has connected
+        cout << "new client connected" << endl;
+        clients.push_back(&client);
+        //creating a new thread object
+        std::thread* clientThread = new thread(handle, client);
     }
 }
 /*

@@ -11,13 +11,10 @@ class TcpServerSocket {
 private:
     bool closed = false;
     int socketId;
-    TcpSocket clientSocket;
 public:
     explicit TcpServerSocket(int port, const char* ip = "");
 
-    TcpSocket* accept();
-
-    void endCommunicationWithClient();
+    TcpSocket accept();
 
     void close();
 

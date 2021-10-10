@@ -1,6 +1,6 @@
 #include "TcpServerSocket.h"
 
-TcpServerSocket::TcpServerSocket(int port, const char *ip) : clientSocket(-1){
+TcpServerSocket::TcpServerSocket(int port, const char *ip) {
     this->socketId = socket(AF_INET, SOCK_STREAM, 0);
     if (this->socketId < 0) {
         perror("error creating socket");
@@ -24,15 +24,15 @@ TcpServerSocket::TcpServerSocket(int port, const char *ip) : clientSocket(-1){
     }
 }
 
-TcpSocket *TcpServerSocket::accept() {
+TcpSocket TcpServerSocket::accept() {
     struct sockaddr_in client_sin{};
     unsigned int addr_len = sizeof(client_sin);
+
     int client_sock = ::accept(this->socketId,  (struct sockaddr *) &client_sin,  &addr_len);
     if (client_sock < 0) {
         perror("error accepting client");
     }
-    this->clientSocket = TcpSocket(client_sock);
-    return &this->clientSocket;
+    return TcpSocket(client_sock);
 }
 
 void TcpServerSocket::close() {
@@ -42,8 +42,4 @@ void TcpServerSocket::close() {
 
 bool TcpServerSocket::isClosed() const {
     return this->closed;
-}
-
-void TcpServerSocket::endCommunicationWithClient() {
-    this->clientSocket.close();
 }
