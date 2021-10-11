@@ -18,6 +18,7 @@ class ICommand {
 public:
     virtual void execute() = 0;
     virtual string description() = 0;
+    virtual ~ICommand() = default;
 };
 
 

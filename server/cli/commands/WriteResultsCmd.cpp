@@ -10,7 +10,7 @@ WriteResultsCmd::WriteResultsCmd(IClassifier *classifier, DefaultIO *io) {
 }
 
 void WriteResultsCmd::execute() {
-    vector<string> *results;
+    vector<string> results;
     try {
          results = this->classifier->getResults();
     } catch (std::exception& e) {
@@ -19,7 +19,7 @@ void WriteResultsCmd::execute() {
     }
     std::stringstream content;
     int i = 1;
-    for (const string& s : *results) {
+    for (const string& s : results) {
         content << std::to_string(i) + "\t" + s << std::endl;
         i++;
     }

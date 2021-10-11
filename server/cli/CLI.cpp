@@ -46,3 +46,12 @@ void CLI::writeMenu() {
     this->io->writeLine(stream.str());
 }
 
+CLI::~CLI() {
+    delete this->classifier;
+    for (ICommand* command : this->commands) {
+        delete command;
+    }
+}
+
+
+

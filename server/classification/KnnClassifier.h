@@ -18,7 +18,7 @@ private:
     vector<Classifiable*>* trainingData = new vector<Classifiable*>;
     vector<Classifiable*>* testingData = new vector<Classifiable*>;
     // the classifier's results, in the original order : {class1, class2, ...}
-    vector<string>* results = new vector<string>();
+    vector<string> results;
 
     /**
      * @return works out the best classification given the k nearest neighbours
@@ -44,21 +44,22 @@ private:
     * @return string
     */
     string classify(const Classifiable& toClassify);
-
 public:
     KnnClassifier() = default;
     void classifyAllTestingData() override;
     vector<std::pair<string, vector<double>>> calculateConfusionMatrix() const override;
     /****getters and setters****/
-    vector<string>* getResults() const override;
+    vector<string> getResults() const override;
+
     int getK() const override;
     void setK(int k) override;
+
     string getMetricName() const override;
+    void setDistanceCalculatingMethod(const string& type) override;
 
     void setTrainingData(vector<Classifiable*>* data) override;
-
     void setTestingData(vector<Classifiable*>* data) override;
-    void setDistanceCalculatingMethod(const string& type) override;
+
     ~KnnClassifier() override;
 };
 

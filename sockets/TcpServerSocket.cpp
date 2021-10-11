@@ -63,7 +63,6 @@ TcpSocket TcpServerSocket::accept(double timeout, double frequency) const {
      */
     double counter = 0;
     while (counter <= timeout) {
-        std::cout << "yes\n";
         int client_sock = ::accept(this->socketId,  (struct sockaddr *) &client_sin,  &addr_len);
         if (client_sock < 0) {
             if (errno == EWOULDBLOCK) {

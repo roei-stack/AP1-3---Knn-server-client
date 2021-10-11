@@ -5,7 +5,7 @@ vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix
     if (this->testingData->empty()) {
         throw std::runtime_error("Error: cannot find testing data");
     }
-    else if (this->results->empty()) {
+    else if (this->results.empty()) {
         throw std::runtime_error("Error: cannot find classifying results");
     }
     // comparing between the testing data and the results...
@@ -25,7 +25,7 @@ vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix
             int counter = 0;
             for (int i = 0; i < this->testingData->size(); i++) {
                 const string tru = this->testingData->at(i)->getClassification();
-                const string predict = this->results->at(i);
+                const string predict = this->results.at(i);
                 if (tru == trueClassification && predict == predictedClassification) {
                     counter++;
                 }
@@ -38,8 +38,8 @@ vector<std::pair<string,vector<double>>> KnnClassifier::calculateConfusionMatrix
 }
 
 /******************************GETTERS AND SETTERS**********************************/
-vector <string> *KnnClassifier::getResults() const {
-    if (this->results->empty()) {
+vector <string> KnnClassifier::getResults() const {
+    if (this->results.empty()) {
         throw std::runtime_error("Error: No results found!");
     }
     return this->results;
@@ -132,12 +132,12 @@ void KnnClassifier::classifyAllTestingData() {
         throw std::runtime_error("Error: Testing data is uninitialized or empty");
     }
     // removing previous results
-    this->results->clear();
+    this->results.clear();
     // classifying all T's in testingData
     for (Classifiable* t : *(this->testingData)) {
         const Classifiable& toClassify = *t;
         string classification = this->classify(toClassify);
-        this->results->push_back(classification);
+        this->results.push_back(classification);
     }
 }
 
@@ -180,6 +180,8 @@ void KnnClassifier::resetAndCopyData(vector<Classifiable *> *oldData, vector<Cla
     if (newData == nullptr) {
         throw std::runtime_error("Error: The new data is undefined (nullptr)");
     }
+    newData->shrink_to_fit();
+    this->clearData(oldData);
     // cleaning the vector
     this->clearData(oldData);
     std::copy(newData->begin(), newData->end(), std::back_inserter(*oldData));
@@ -193,5 +195,4 @@ KnnClassifier::~KnnClassifier() {
     clearData(this->testingData);
     delete this->testingData;
     delete this->calculator;
-    delete this->results;
 }

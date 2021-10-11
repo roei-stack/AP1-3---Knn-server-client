@@ -1,7 +1,3 @@
-//
-// Created by user on 9/26/2021.
-//
-
 #ifndef HW3_STANDARDINOUTCLI_H
 #define HW3_STANDARDINOUTCLI_H
 
@@ -27,8 +23,7 @@ private:
 public:
     explicit CLI(DefaultIO* io);
     void start();
-
-    // todo destructor
+    ~CLI();
 };
 
 

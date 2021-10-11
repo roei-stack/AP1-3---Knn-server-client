@@ -16,7 +16,7 @@ using std::string;
 class IClassifier {
 public:
     virtual void classifyAllTestingData() = 0;
-    virtual vector<string>* getResults() const = 0;
+    virtual vector<string> getResults() const = 0;
     virtual vector<std::pair<string, vector<double>>> calculateConfusionMatrix() const = 0;
 
     /*************GETTERS AND SETTERS***************/
