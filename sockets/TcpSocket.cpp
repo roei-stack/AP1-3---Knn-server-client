@@ -1,13 +1,14 @@
 #include "TcpSocket.h"
 
-TcpSocket::TcpSocket(int socketId) : socketId(socketId) {}
+TcpSocket::TcpSocket(int socketId) : socketId(socketId) {
+
+}
 
 TcpSocket::TcpSocket(const char *othersIp, int othersPort) {
     this->socketId = socket(AF_INET, SOCK_STREAM, 0);
     if (this->socketId < 0) {
         perror("error creating socket");
     }
-
     struct sockaddr_in sin{};
     memset(&sin, 0, sizeof(sin));
     sin.sin_family = AF_INET;

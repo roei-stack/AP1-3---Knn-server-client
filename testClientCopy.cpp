@@ -25,7 +25,7 @@ void sendToServer(const string& msg, const SocketIO& io) {
 }
 
 int main() {
-    TcpSocket socket("127.0.0.1", 12644);
+    TcpSocket socket("127.0.0.1", 6855);
     SocketIO io(&socket);
     std::cout << io.read() << std::endl;
     while (true) {
