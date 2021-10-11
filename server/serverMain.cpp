@@ -11,6 +11,7 @@ void handle(TcpSocket clientSock) {
 }
 
 int main() {
+    // store the client threads to wait for them after timout
     std::vector<std::thread*> threads;
 
     // reminder -> reference paths start with "../"
