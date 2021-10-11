@@ -8,7 +8,7 @@ include_directories(server/classification server/classification/dist_strategies 
         sockets io)
 
 add_executable(hw3 server/serverMain.cpp
-        server/classification/Reader.cpp server/classification/Reader.h
+        Reader.cpp Reader.h
         server/classification/Classifiable.cpp server/classification/Classifiable.h
         server/classification/IClassifier.h
         server/classification/dist_strategies/DistanceCalculator.h
@@ -21,7 +21,7 @@ add_executable(hw3 server/serverMain.cpp
         server/classification/dist_strategies/DistCalcFactory.cpp server/classification/dist_strategies/DistCalcFactory.h
         server/cli/commands/WriteResultsCmd.cpp server/cli/commands/WriteResultsCmd.h
         server/cli/commands/ClassifyCmd.cpp server/cli/commands/ClassifyCmd.h
-        server/classification/LineToClassifiableConverter.cpp server/classification/LineToClassifiableConverter.h
+        LineToClassifiableConverter.cpp LineToClassifiableConverter.h
         server/cli/commands/ConfusionMatrixCmd.cpp server/cli/commands/ConfusionMatrixCmd.h
         server/cli/CLI.cpp
         server/cli/CLI.h server/classification/KnnClassifier.cpp server/classification/KnnClassifier.h
@@ -29,7 +29,7 @@ add_executable(hw3 server/serverMain.cpp
         server/classification/dist_strategies/ChebyshevDistance.cpp io/SocketIO.cpp io/StandardIo.cpp)
 
 add_executable(testClient testClient.cpp
-        server/classification/Reader.cpp server/classification/Reader.h
+        Reader.cpp Reader.h
         server/classification/Classifiable.cpp server/classification/Classifiable.h
         server/classification/IClassifier.h
         server/classification/dist_strategies/DistanceCalculator.h
@@ -42,7 +42,7 @@ add_executable(testClient testClient.cpp
         server/classification/dist_strategies/DistCalcFactory.cpp server/classification/dist_strategies/DistCalcFactory.h
         server/cli/commands/WriteResultsCmd.cpp server/cli/commands/WriteResultsCmd.h
         server/cli/commands/ClassifyCmd.cpp server/cli/commands/ClassifyCmd.h
-        server/classification/LineToClassifiableConverter.cpp server/classification/LineToClassifiableConverter.h
+        LineToClassifiableConverter.cpp LineToClassifiableConverter.h
         server/cli/commands/ConfusionMatrixCmd.cpp server/cli/commands/ConfusionMatrixCmd.h
         server/cli/CLI.cpp
         server/cli/CLI.h server/classification/KnnClassifier.cpp server/classification/KnnClassifier.h
@@ -50,7 +50,7 @@ add_executable(testClient testClient.cpp
         server/classification/dist_strategies/ChebyshevDistance.cpp io/SocketIO.cpp io/StandardIo.cpp)
 
 add_executable(otherClient testClientCopy.cpp
-        server/classification/Reader.cpp server/classification/Reader.h
+        Reader.cpp Reader.h
         server/classification/Classifiable.cpp server/classification/Classifiable.h
         server/classification/IClassifier.h
         server/classification/dist_strategies/DistanceCalculator.h
@@ -63,7 +63,7 @@ add_executable(otherClient testClientCopy.cpp
         server/classification/dist_strategies/DistCalcFactory.cpp server/classification/dist_strategies/DistCalcFactory.h
         server/cli/commands/WriteResultsCmd.cpp server/cli/commands/WriteResultsCmd.h
         server/cli/commands/ClassifyCmd.cpp server/cli/commands/ClassifyCmd.h
-        server/classification/LineToClassifiableConverter.cpp server/classification/LineToClassifiableConverter.h
+        LineToClassifiableConverter.cpp LineToClassifiableConverter.h
         server/cli/commands/ConfusionMatrixCmd.cpp server/cli/commands/ConfusionMatrixCmd.h
         server/cli/CLI.cpp
         server/cli/CLI.h server/classification/KnnClassifier.cpp server/classification/KnnClassifier.h

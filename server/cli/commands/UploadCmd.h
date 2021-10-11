@@ -6,7 +6,7 @@
 #define HW3_UPLOADCMD_H
 
 #include "ICommand.h"
-#include "LineToClassifiableConverter.h"
+#include "../../../LineToClassifiableConverter.h"
 
 
 class UploadCmd : public ICommand {
