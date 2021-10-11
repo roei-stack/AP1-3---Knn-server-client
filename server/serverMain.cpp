@@ -16,7 +16,7 @@ int main() {
     std::vector<std::thread*> threads;
 
     // reminder -> reference paths start with "../"
-    TcpServerSocket server(8757, "127.0.0.1");
+    TcpServerSocket server(5487, "127.0.0.1");
     while (true) {
         try {
             // socket object to receive incoming clients

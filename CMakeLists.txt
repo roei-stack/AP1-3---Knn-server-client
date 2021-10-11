@@ -9,6 +9,7 @@ include_directories(server/classification server/classification/dist_strategies 
 
 add_executable(server server/serverMain.cpp
         server/classification/Classifiable.cpp server/classification/Classifiable.h
+        server/cli/commands/DownloadCmd.h server/cli/commands/DownloadCmd.cpp
         server/classification/IClassifier.h
         server/classification/dist_strategies/DistanceCalculator.h
         io/DefaultIO.h io/StandardIO.h io/SocketIO.h
@@ -28,10 +29,6 @@ add_executable(server server/serverMain.cpp
         server/classification/dist_strategies/ChebyshevDistance.cpp io/SocketIO.cpp io/StandardIo.cpp)
 
 add_executable(testClient clientMain.cpp
-        io/DefaultIO.h io/StandardIO.h io/StandardIo.cpp io/SocketIO.h io/SocketIO.cpp
-        sockets/TcpSocket.h sockets/TcpSocket.cpp)
-
-add_executable(otherClient
         io/DefaultIO.h io/StandardIO.h io/StandardIo.cpp io/SocketIO.h io/SocketIO.cpp
         sockets/TcpSocket.h sockets/TcpSocket.cpp)
 

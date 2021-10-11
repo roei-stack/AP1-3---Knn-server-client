@@ -9,6 +9,7 @@
 #include "ConfusionMatrixCmd.h"
 #include "WriteResultsCmd.h"
 #include "UpdateSettingsCmd.h"
+#include "DownloadCmd.h"
 #include "ClassifyCmd.h"
 
 using std::vector;

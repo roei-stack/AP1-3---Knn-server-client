@@ -6,7 +6,7 @@ CLI::CLI(DefaultIO *io) {
     this->commands.push_back(new UpdateSettingsCmd(classifier, io));
     this->commands.push_back(new ClassifyCmd(classifier, io));
     this->commands.push_back(new WriteResultsCmd(classifier, io));
-    // TODO downloadCmd (for the server it is same as the WriteResultsCmd, the client code need to write to a file)
+    this->commands.push_back(new DownloadCmd(classifier, io));
     this->commands.push_back(new ConfusionMatrixCmd(classifier, io));
 }
 

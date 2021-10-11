@@ -10,10 +10,10 @@ void UpdateSettingsCmd::execute() {
                      + ", distance metric = " + this->classifier->getMetricName();
     this->dio->writeLine(toWrite);
     string response = this->dio->read();
-    response = rtrim(response);
     if (!(response.empty())) {
         // we will split the response using the ' ' (space) character as a separator
         // the first token should be K and the second should be the metric name
+        response = rtrim(response);
         int k;
         string kStr, metric;
         char separator = ' ';

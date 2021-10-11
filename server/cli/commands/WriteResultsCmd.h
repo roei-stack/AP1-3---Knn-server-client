@@ -17,10 +17,10 @@ private:
     string cmdDescription = "display results";
     IClassifier* classifier;
     DefaultIO* dio;
-
 public:
     WriteResultsCmd(IClassifier *classifier, DefaultIO *io);
     void execute() override;
+    std::stringstream output();
     string description() override;
 };
 
