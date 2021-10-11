@@ -1,7 +1,7 @@
 #include <thread>
-#include "CLI.h"
-#include "sockets/TcpServerSocket.h"
-#include "io/SocketIO.h"
+#include "cli/CLI.h"
+#include "TcpServerSocket.h"
+#include "SocketIO.h"
 
 void handle(TcpSocket clientSock) {
     SocketIO io(&clientSock);
@@ -11,6 +11,8 @@ void handle(TcpSocket clientSock) {
 }
 
 int main() {
+    std::vector<std::thread*> threads;
+
     // reminder -> reference paths start with "../"
     TcpServerSocket server(6855, "127.0.0.1");
     while (true) {
@@ -22,10 +24,16 @@ int main() {
             std::cout << "new client connected" << std::endl;
             //creating a new thread object
             auto *clientThread = new std::thread(handle, client);
+            threads.push_back(clientThread);
         } catch (std::exception& e) {
-            // todo handle connection timed out
-            // 1 todo if any client connects, send "exit"
-            // 2 todo check in client if server sent "exit"
+            // waiting for all client threads to finish
+            for (std::thread* t : threads) {
+                if (t->joinable()) {
+                    t->join();
+                }
+                delete t;
+            }
+
             break;
         }
     }

@@ -1,9 +1,8 @@
 #include <iostream>
-#include "CLI.h"
+#include "cli/CLI.h"
 #include "classification/Reader.h"
 #include "sockets/TcpSocket.h"
 #include "io/SocketIO.h"
-#include "server/ClassifyingServerCH.h"
 
 void sendToServer(const string& msg, const SocketIO& io) {
     // checking if client entered a valid file path
