@@ -11,14 +11,12 @@ Classifiable *LineToClassifiableConverter::convert(const std::string &line, int 
     std::stringstream iterator(line);
     // we will store our tokens here, last token should be the classification
     std::vector<std::string> tokens;
-
     /*
      * while (there are still ',')
      *      save current token
     */
     char separator = ',';
     std::string currentString;
-
     while (getline(iterator, currentString, separator)) {
         tokens.push_back(currentString);
     }
@@ -26,7 +24,6 @@ Classifiable *LineToClassifiableConverter::convert(const std::string &line, int 
     int amountOfCoordinates = (int) tokens.size() - 1;
     if (amountOfCoordinates <= 0) {
         throw std::runtime_error("Error: could not parse line #" + std::to_string(errorCode) + "->\"" + line + "\"");
-
     }
     coordinates.reserve(amountOfCoordinates);
     for (int i = 0; i < amountOfCoordinates; i++) {
