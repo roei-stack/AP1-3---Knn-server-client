@@ -9,7 +9,6 @@ void UpdateSettingsCmd::execute() {
     string toWrite = "The current KNN parameters are: K = " + std::to_string(this->classifier->getK())
                      + ", distance metric = " + this->classifier->getMetricName();
     this->dio->writeLine(toWrite);
-
     string response = this->dio->read();
     response = rtrim(response);
     if (!(response.empty())) {
@@ -25,14 +24,13 @@ void UpdateSettingsCmd::execute() {
         bool validK = true;
         try {
             k = std::stoi(kStr);
-            // kStr = 123hgkjglk is not valid, k must be between 1 to 10
+            // kStr = 5hgkjglk is not valid, k must be between 1 to 10
             if (std::to_string(k) != kStr || !(k>=1 && k <=10)) {
                 validK = false;
             }
         } catch (...) {
             validK = false;
         }
-
         bool validMetric = true;
         if (validK) {
             try {
