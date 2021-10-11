@@ -37,7 +37,7 @@ void TcpServerSocket::unblockSocket() const {
     if (flags < 0) {
         perror("could not get flags on TCP listening socket");
     }
-    // wtf is this
+    // what the fuck
     if (fcntl(this->socketId, F_SETFL, flags | O_NONBLOCK) < 0) {
         perror("could not set TCP listening socket to be non-blocking");
     }
