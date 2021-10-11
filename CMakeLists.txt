@@ -27,7 +27,7 @@ add_executable(server server/serverMain.cpp
         server/classification/dist_strategies/EuclideanDistance.cpp server/classification/dist_strategies/ManhattenDistance.cpp
         server/classification/dist_strategies/ChebyshevDistance.cpp io/SocketIO.cpp io/StandardIo.cpp)
 
-add_executable(testClient testClient.cpp
+add_executable(testClient clientMain.cpp
         io/DefaultIO.h io/StandardIO.h io/StandardIo.cpp io/SocketIO.h io/SocketIO.cpp
         sockets/TcpSocket.h sockets/TcpSocket.cpp)
 
