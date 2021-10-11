@@ -21,7 +21,7 @@ add_executable(hw3 server/serverMain.cpp
         server/classification/dist_strategies/DistCalcFactory.cpp server/classification/dist_strategies/DistCalcFactory.h
         server/cli/commands/WriteResultsCmd.cpp server/cli/commands/WriteResultsCmd.h
         server/cli/commands/ClassifyCmd.cpp server/cli/commands/ClassifyCmd.h
-        LineToClassifiableConverter.cpp LineToClassifiableConverter.h
+        server/cli/commands/LineToClassifiableConverter.cpp server/cli/commands/LineToClassifiableConverter.h
         server/cli/commands/ConfusionMatrixCmd.cpp server/cli/commands/ConfusionMatrixCmd.h
         server/cli/CLI.cpp
         server/cli/CLI.h server/classification/KnnClassifier.cpp server/classification/KnnClassifier.h
@@ -42,7 +42,7 @@ add_executable(testClient testClient.cpp
         server/classification/dist_strategies/DistCalcFactory.cpp server/classification/dist_strategies/DistCalcFactory.h
         server/cli/commands/WriteResultsCmd.cpp server/cli/commands/WriteResultsCmd.h
         server/cli/commands/ClassifyCmd.cpp server/cli/commands/ClassifyCmd.h
-        LineToClassifiableConverter.cpp LineToClassifiableConverter.h
+        server/cli/commands/LineToClassifiableConverter.cpp server/cli/commands/LineToClassifiableConverter.h
         server/cli/commands/ConfusionMatrixCmd.cpp server/cli/commands/ConfusionMatrixCmd.h
         server/cli/CLI.cpp
         server/cli/CLI.h server/classification/KnnClassifier.cpp server/classification/KnnClassifier.h
@@ -63,7 +63,7 @@ add_executable(otherClient testClientCopy.cpp
         server/classification/dist_strategies/DistCalcFactory.cpp server/classification/dist_strategies/DistCalcFactory.h
         server/cli/commands/WriteResultsCmd.cpp server/cli/commands/WriteResultsCmd.h
         server/cli/commands/ClassifyCmd.cpp server/cli/commands/ClassifyCmd.h
-        LineToClassifiableConverter.cpp LineToClassifiableConverter.h
+        server/cli/commands/LineToClassifiableConverter.cpp server/cli/commands/LineToClassifiableConverter.h
         server/cli/commands/ConfusionMatrixCmd.cpp server/cli/commands/ConfusionMatrixCmd.h
         server/cli/CLI.cpp
         server/cli/CLI.h server/classification/KnnClassifier.cpp server/classification/KnnClassifier.h

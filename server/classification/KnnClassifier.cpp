@@ -120,6 +120,7 @@ string KnnClassifier::chooseBestClassification() {
             maxPair = *it;
         }
     }
+    // todo why warning
     return maxPair.first;
 }
 
