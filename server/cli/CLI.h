@@ -19,6 +19,7 @@ private:
     KnnClassifier* classifier = new KnnClassifier;
     DefaultIO* io;
     vector<ICommand*> commands;
+    string menu();
     void writeMenu();
 
 public:

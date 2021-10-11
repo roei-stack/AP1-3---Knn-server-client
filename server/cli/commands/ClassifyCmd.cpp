@@ -8,12 +8,12 @@ ClassifyCmd::ClassifyCmd(IClassifier *classifier, DefaultIO *io) {
     this->dio = io;
 }
 
-void ClassifyCmd::execute() {
+void ClassifyCmd::execute(string& menu) {
     try {
         this->classifier->classifyAllTestingData();
-        this->dio->writeLine("classifying data complete");
+        this->dio->writeLine("classifying data complete\n" + menu);
     } catch (std::exception& e) {
-        this->dio->writeLine(e.what());
+        this->dio->writeLine(string(e.what()) + "\n" + menu);
     }
 }
 

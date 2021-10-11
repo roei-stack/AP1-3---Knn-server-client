@@ -5,9 +5,10 @@ UpdateSettingsCmd::UpdateSettingsCmd(IClassifier *classifier, DefaultIO *io) {
     this->classifier = classifier;
 }
 
-void UpdateSettingsCmd::execute() {
+void UpdateSettingsCmd::execute(string& menu) {
     string toWrite = "The current KNN parameters are: K = " + std::to_string(this->classifier->getK())
                      + ", distance metric = " + this->classifier->getMetricName();
+    std::stringstream out;
     this->dio->writeLine(toWrite);
     string response = this->dio->read();
     response = rtrim(response);
@@ -43,13 +44,15 @@ void UpdateSettingsCmd::execute() {
         if (validK && validMetric) {
             this->classifier->setK(k);
 
-            this->dio->writeLine("Updated successfully");
+            out << "Updated successfully";
         } else if (!validK) {
-            this->dio->writeLine("Invalid K");
+            out << "Invalid K";
         } else if (!validMetric) {
-            this->dio->writeLine("Invalid Metric Name");
+            out << "Invalid Metric Name";
         }
     }
+    out << std::endl << menu;
+    this->dio->writeLine(out.str());
 }
 
 string UpdateSettingsCmd::description() {

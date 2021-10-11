@@ -12,7 +12,7 @@ private:
     DefaultIO* dio;
 public:
     DownloadCmd(IClassifier* classifier, DefaultIO *io);
-    void execute() override;
+    void execute(string& menu) override;
     string description() override;
 };
 

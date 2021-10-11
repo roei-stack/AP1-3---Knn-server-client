@@ -5,13 +5,13 @@ ConfusionMatrixCmd::ConfusionMatrixCmd(IClassifier *classifier, DefaultIO *io) {
     this->dio = io;
 }
 
-void ConfusionMatrixCmd::execute() {
+void ConfusionMatrixCmd::execute(string& menu) {
     vector<std::pair<string, vector<double>>> mat;
     try {
         mat = this->classifier->calculateConfusionMatrix();
     }
     catch (std::exception& e) {
-        this->dio->writeLine(e.what());
+        this->dio->writeLine(string(e.what()) + "\n" + menu);
         return;
     }
     // PRINTING THE CONFUSION MATRIX
@@ -30,6 +30,8 @@ void ConfusionMatrixCmd::execute() {
         }
         ssMat << std::endl;
     }
+    ssMat << std::endl << menu;
+
     string sMat = ssMat.str();
     this->dio->writeLine(sMat);
 }

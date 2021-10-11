@@ -5,14 +5,14 @@ DownloadCmd::DownloadCmd(IClassifier *classifier, DefaultIO *io) {
     this->classifier = classifier;
 }
 
-void DownloadCmd::execute() {
+void DownloadCmd::execute(string& menu) {
     WriteResultsCmd cmd(this->classifier, this->dio);
     std::stringstream ss;
     try {
         ss << "save" << std::endl << cmd.output().str();
-        this->dio->writeLine(ss.str());
+        this->dio->writeLine(ss.str() + "\n" + menu);
     } catch (std::exception& e) {
-        this->dio->writeLine(e.what());
+        this->dio->writeLine(string(e.what()) + "\n" + menu);
     }
 }
 

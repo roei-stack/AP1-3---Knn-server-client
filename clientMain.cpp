@@ -30,9 +30,20 @@ void saveResultsToFile(const string& path, const string& output) {
         std::cout << "Error: " << path << "is not a proper path" << std::endl;
         return;
     }
-    myFile << output;
-    std::cout << "file saved successfully" << std::endl;
+    stringstream ss(output);
+    string current;
+    std::getline(ss, current); // don't write the save
+    if (current == "save")
+        std::getline(ss, current);
+    while (current != "Done.") {
+        myFile << current << std::endl;
+
+        std::getline(ss, current);
+    }
     myFile.close();
+    std::cout << "file saved successfully" << std::endl;
+    string menu = ss.str();
+    std::cout << menu;
 }
 
 int main() {

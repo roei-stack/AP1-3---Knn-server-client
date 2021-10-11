@@ -16,7 +16,7 @@ private:
 
 public:
     ClassifyCmd(IClassifier *classifier, DefaultIO *io);
-    void execute() override;
+    void execute(string& menu) override;
     string description() override;
 };
 

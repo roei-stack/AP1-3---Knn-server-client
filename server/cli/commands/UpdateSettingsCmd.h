@@ -15,7 +15,7 @@ private:
     std::string& rtrim(std::string &s);
 public:
     UpdateSettingsCmd(IClassifier* classifier, DefaultIO *io);
-    void execute() override;
+    void execute(string& menu) override;
     string description() override;
 };
 

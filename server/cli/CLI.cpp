@@ -29,11 +29,23 @@ void CLI::start() {
             break;
         }
         ICommand* toExecute = this->commands[option - 1];
-        toExecute->execute();
+        string menu = this->menu();
+        toExecute->execute(menu);
     }
 }
 
 void CLI::writeMenu() {
+    this->io->writeLine(this->menu());
+}
+
+CLI::~CLI() {
+    delete this->classifier;
+    for (ICommand* command : this->commands) {
+        delete command;
+    }
+}
+
+string CLI::menu() {
     std::stringstream stream;
     stream << "Welcome to the Knn Classifier CLI. Please choose an option:" << std::endl;
     int i = 1;
@@ -42,14 +54,7 @@ void CLI::writeMenu() {
         i++;
     }
     stream << std::to_string(i) + ".\texit";
-    this->io->writeLine(stream.str());
-}
-
-CLI::~CLI() {
-    delete this->classifier;
-    for (ICommand* command : this->commands) {
-        delete command;
-    }
+    return stream.str();
 }
 
 

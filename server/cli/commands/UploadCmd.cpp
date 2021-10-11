@@ -9,7 +9,7 @@ std::string UploadCmd::description() {
     return this->cmdDescription;
 }
 
-void UploadCmd::execute() {
+void UploadCmd::execute(string& menu) {
     //uploading train
     this->dio->writeLine("Please upload your local train csv file.");
     vector<Classifiable*>* train;
@@ -17,7 +17,7 @@ void UploadCmd::execute() {
     try {
         train = receiveDataset();
     } catch (std::exception& e) {
-        this->dio->writeLine(e.what());
+        this->dio->writeLine(string(e.what()) + "\n" + menu);
         return;
     }
     this->classifier->setTrainingData(train);
@@ -26,11 +26,11 @@ void UploadCmd::execute() {
     try {
         test = receiveDataset();
     } catch (std::exception& e) {
-        this->dio->writeLine(e.what());
+        this->dio->writeLine(string(e.what()) + "\n" + menu);
         return;
     }
     this->classifier->setTestingData(test);
-    this->dio->writeLine("Upload complete.");
+    this->dio->writeLine("Upload complete.\n" + menu);
 }
 
 std::vector<Classifiable *> *UploadCmd::receiveDataset() {

@@ -9,11 +9,11 @@ WriteResultsCmd::WriteResultsCmd(IClassifier *classifier, DefaultIO *io) {
     this->dio = io;
 }
 
-void WriteResultsCmd::execute() {
+void WriteResultsCmd::execute(string& menu) {
     try {
-        this->dio->writeLine(this->output().str());
+        this->dio->writeLine(this->output().str() + "\n" + menu);
     } catch (std::exception& e) {
-        this->dio->writeLine(e.what());
+        this->dio->writeLine(string(e.what()) + "\n" + menu);
     }
 }
 

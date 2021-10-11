@@ -19,7 +19,7 @@ private:
     DefaultIO* dio;
 public:
     WriteResultsCmd(IClassifier *classifier, DefaultIO *io);
-    void execute() override;
+    void execute(string& menu) override;
     std::stringstream output();
     string description() override;
 };

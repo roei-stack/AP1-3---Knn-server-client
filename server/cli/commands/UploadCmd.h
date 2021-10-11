@@ -22,7 +22,7 @@ public:
 
     std::string description() override;
 
-    void execute() override;
+    void execute(string& menu) override;
 };
 
 
