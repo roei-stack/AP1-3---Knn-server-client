@@ -66,17 +66,8 @@ void KnnClassifier::setK(int newK) {
     this->k = newK;
 }
 
-vector<Classifiable*> *KnnClassifier::getTrainingData() const {
-    return this->trainingData;
-}
-
 void KnnClassifier::setTrainingData(vector<Classifiable*> *data) {
     this->resetAndCopyData(this->trainingData, data);
-}
-
-
-vector<Classifiable*> *KnnClassifier::getTestingData() const {
-    return this->trainingData;
 }
 
 void KnnClassifier::setTestingData(vector<Classifiable*> *data) {

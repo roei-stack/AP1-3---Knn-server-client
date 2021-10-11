@@ -21,9 +21,9 @@ public:
     /*************GETTERS AND SETTERS***************/
     virtual int getK() const = 0;
     virtual void setK(int k) = 0;
-    virtual vector<Classifiable*>* getTrainingData() const = 0;
+
     virtual void setTrainingData(vector<Classifiable*>* data) = 0;
-    virtual vector<Classifiable*>* getTestingData() const = 0;
+
     virtual void setTestingData(vector<Classifiable*>* data) = 0;
     virtual string getMetricName() const = 0;
     virtual void setDistanceCalculatingMethod(const string& type) = 0;

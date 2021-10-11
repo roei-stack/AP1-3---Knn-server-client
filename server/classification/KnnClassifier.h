@@ -54,9 +54,9 @@ public:
     int getK() const override;
     void setK(int k) override;
     string getMetricName() const override;
-    vector<Classifiable*>* getTrainingData() const override;
+
     void setTrainingData(vector<Classifiable*>* data) override;
-    vector<Classifiable*>* getTestingData() const override;
+
     void setTestingData(vector<Classifiable*>* data) override;
     void setDistanceCalculatingMethod(const string& type) override;
     ~KnnClassifier() override;
