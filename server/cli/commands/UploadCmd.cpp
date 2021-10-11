@@ -11,25 +11,25 @@ std::string UploadCmd::description() {
 
 void UploadCmd::execute() {
     //uploading train
-    this->dio->write("Please upload your local train csv file.");
+    this->dio->writeLine("Please upload your local train csv file.");
     vector<Classifiable*>* train;
     try {
         train = receiveDataset();
     } catch (std::exception& e) {
-        this->dio->write(e.what());
+        this->dio->writeLine(e.what());
         return;
     }
     this->classifier->setTrainingData(train);
-    this->dio->write("Upload complete.\n\rPlease upload your local test csv file.");
+    this->dio->writeLine("Upload complete.\n\rPlease upload your local test csv file.");
     vector<Classifiable*>* test;
     try {
         test = receiveDataset();
     } catch (std::exception& e) {
-        this->dio->write(e.what());
+        this->dio->writeLine(e.what());
         return;
     }
     this->classifier->setTestingData(test);
-    this->dio->write("Upload complete.");
+    this->dio->writeLine("Upload complete.");
 }
 
 std::vector<Classifiable *> *UploadCmd::receiveDataset() {

@@ -16,7 +16,7 @@ string SocketIO::read() const {
     return this->socket->receive();
 }
 
-void SocketIO::write(const string &message) const {
+void SocketIO::writeLine(const string &message) const {
     std::stringstream msg;
     msg << message << std::endl;
     this->socket->send(msg.str());

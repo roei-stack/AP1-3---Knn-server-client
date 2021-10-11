@@ -11,7 +11,7 @@ void ConfusionMatrixCmd::execute() {
         mat = this->classifier->calculateConfusionMatrix();
     }
     catch (std::exception& e) {
-        this->dio->write(e.what());
+        this->dio->writeLine(e.what());
         return;
     }
     // PRINTING THE CONFUSION MATRIX
@@ -31,7 +31,7 @@ void ConfusionMatrixCmd::execute() {
         ssMat << std::endl;
     }
     string sMat = ssMat.str();
-    this->dio->write(sMat);
+    this->dio->writeLine(sMat);
 }
 
 string ConfusionMatrixCmd::description() {

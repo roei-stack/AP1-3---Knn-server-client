@@ -6,6 +6,6 @@ string StandardIO::read() const {
     return message;
 }
 
-void StandardIO::write(const string &message) const {
+void StandardIO::writeLine(const string &message) const {
     std::cout << message << std::endl;
 }

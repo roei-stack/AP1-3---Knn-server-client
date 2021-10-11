@@ -9,7 +9,7 @@ void sendToServer(const string& msg, const SocketIO& io) {
     std::ifstream f(msg);
     if (!f) {
         // not a file path
-        io.write(msg);
+        io.writeLine(msg);
         return;
     }
     // if the user entered a file path
@@ -20,7 +20,7 @@ void sendToServer(const string& msg, const SocketIO& io) {
        content << current << ":";
     }
     content << "Done.";
-    io.write(content.str());
+    io.writeLine(content.str());
 }
 
 int main() {

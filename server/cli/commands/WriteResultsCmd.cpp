@@ -14,7 +14,7 @@ void WriteResultsCmd::execute() {
     try {
          results = this->classifier->getResults();
     } catch (std::exception& e) {
-        this->dio->write(e.what());
+        this->dio->writeLine(e.what());
         return;
     }
     std::stringstream content;
@@ -24,7 +24,7 @@ void WriteResultsCmd::execute() {
         i++;
     }
     content << "Done.";
-    this->dio->write(content.str());
+    this->dio->writeLine(content.str());
 }
 
 string WriteResultsCmd::description() {

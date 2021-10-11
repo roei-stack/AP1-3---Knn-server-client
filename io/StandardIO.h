@@ -7,7 +7,7 @@
 class StandardIO : public DefaultIO{
 public:
     string read() const override;
-    void write(const string& message) const override;
+    void writeLine(const string& message) const override;
 };
 
 #endif //HW3_STANDARDIO_H

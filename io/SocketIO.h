@@ -17,7 +17,7 @@ private:
 public:
     explicit SocketIO(TcpSocket* tcpSocket);
     string read() const override;
-    void write(const string& message) const override;
+    void writeLine(const string& message) const override;
 };
 
 #endif //HW3_SOCKETIO_H

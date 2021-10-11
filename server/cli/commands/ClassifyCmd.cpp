@@ -11,9 +11,9 @@ ClassifyCmd::ClassifyCmd(IClassifier *classifier, DefaultIO *io) {
 void ClassifyCmd::execute() {
     try {
         this->classifier->classifyAllTestingData();
-        this->dio->write("classifying data complete");
+        this->dio->writeLine("classifying data complete");
     } catch (std::exception& e) {
-        this->dio->write(e.what());
+        this->dio->writeLine(e.what());
     }
 }
 
