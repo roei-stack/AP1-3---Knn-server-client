@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <cstring>
 
-#define BUFFER 4096
+#define BUFFER 10240
 
 
 class TcpSocket {
