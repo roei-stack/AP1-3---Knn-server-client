@@ -27,6 +27,8 @@ private:
 public:
     explicit CLI(DefaultIO* io);
     void start();
+
+    // todo destructor
 };
 
 
