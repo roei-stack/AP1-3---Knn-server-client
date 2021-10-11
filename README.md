@@ -12,4 +12,4 @@
     
     after each accept the server is opening a new thread which runs the CLI for one client.
     
-    we set the accept timout to 2 min's.
+    we set the accept timout to 2 min's. you can change it on the ServerSocket class
