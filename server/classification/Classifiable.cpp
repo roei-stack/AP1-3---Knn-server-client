@@ -7,11 +7,6 @@ std::string Classifiable::getClassification() const {
     return this->classification;
 }
 
-void Classifiable::setClassification(const std::string& newClassification) {
-    this->classification = newClassification;
-}
-
-
 void Classifiable::Print(std::ostream &os) const {
     char separator = ',';
     for (double a : this->coordinates) {

@@ -19,7 +19,7 @@ public:
      * @return the coordinates of this Classifiable
      */
     std::vector<double> getCoordinates() const;
-    void setClassification(const std::string& newClassification);
+
     friend std::ostream& operator<<(std::ostream& out, const Classifiable& b);
 };
 #endif //ASS1_IRIS_H
