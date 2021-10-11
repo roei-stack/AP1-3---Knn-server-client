@@ -14,12 +14,19 @@ private:
 public:
     explicit Classifiable(std::vector<double> point, std::string  classification = "");
 
+    /**
+     * @return the classification of this Classifiable
+     */
     std::string getClassification() const;
+
     /**
      * @return the coordinates of this Classifiable
      */
     std::vector<double> getCoordinates() const;
 
+    /**
+     * printing
+     */
     friend std::ostream& operator<<(std::ostream& out, const Classifiable& b);
 };
 #endif //ASS1_IRIS_H
