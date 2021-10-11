@@ -13,6 +13,7 @@ void UploadCmd::execute() {
     //uploading train
     this->dio->writeLine("Please upload your local train csv file.");
     vector<Classifiable*>* train;
+    // if the server sent invalid file an error will be thrown
     try {
         train = receiveDataset();
     } catch (std::exception& e) {
