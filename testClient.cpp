@@ -1,6 +1,5 @@
 #include <iostream>
 #include "cli/CLI.h"
-#include "Reader.h"
 #include "sockets/TcpSocket.h"
 #include "io/SocketIO.h"
 

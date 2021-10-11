@@ -8,7 +8,6 @@ include_directories(server/classification server/classification/dist_strategies 
         sockets io)
 
 add_executable(hw3 server/serverMain.cpp
-        Reader.cpp Reader.h
         server/classification/Classifiable.cpp server/classification/Classifiable.h
         server/classification/IClassifier.h
         server/classification/dist_strategies/DistanceCalculator.h
@@ -29,7 +28,6 @@ add_executable(hw3 server/serverMain.cpp
         server/classification/dist_strategies/ChebyshevDistance.cpp io/SocketIO.cpp io/StandardIo.cpp)
 
 add_executable(testClient testClient.cpp
-        Reader.cpp Reader.h
         server/classification/Classifiable.cpp server/classification/Classifiable.h
         server/classification/IClassifier.h
         server/classification/dist_strategies/DistanceCalculator.h
@@ -50,7 +48,6 @@ add_executable(testClient testClient.cpp
         server/classification/dist_strategies/ChebyshevDistance.cpp io/SocketIO.cpp io/StandardIo.cpp)
 
 add_executable(otherClient testClientCopy.cpp
-        Reader.cpp Reader.h
         server/classification/Classifiable.cpp server/classification/Classifiable.h
         server/classification/IClassifier.h
         server/classification/dist_strategies/DistanceCalculator.h
