@@ -5,9 +5,12 @@
 
 void handle(TcpSocket clientSock) {
     SocketIO io(&clientSock);
-    // todo add try catch so the whole server wont crash in case of exception.
-    CLI cli(&io);
-    cli.start();
+    try {
+        CLI cli(&io);
+        cli.start();
+    } catch (...) {
+
+    }
     clientSock.close();
 }
 

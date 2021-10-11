@@ -38,7 +38,7 @@ void saveResultsToFile(const string& path, const string& output) {
 int main() {
     TcpSocket socket("127.0.0.1", 5487);
     SocketIO io(&socket);
-    std::cout << io.read() << std::endl;
+    std::cout << io.read();
     while (true) {
         string input, output;
         getline(std::cin, input);
