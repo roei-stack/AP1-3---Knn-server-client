@@ -26,7 +26,7 @@ void CLI::start() {
         }
         if (option == this->commands.size() + 1) {
             this->io->writeLine("exit");
-            // todo clear resources
+            // todo clear resources. Why here and not in the destructor?
             break;
         }
         ICommand* toExecute = this->commands[option - 1];
