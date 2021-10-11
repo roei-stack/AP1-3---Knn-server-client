@@ -9,7 +9,7 @@
 #include <cstring>
 
 #define BUFFER 4096
-#define CLIENT_QUEUE_SIZE 5
+
 
 class TcpSocket {
 private:

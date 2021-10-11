@@ -8,6 +8,8 @@
 #include <cstring>
 #include <fcntl.h>
 
+#define CLIENT_QUEUE_SIZE 5
+
 class TcpServerSocket {
 private:
     bool closed = false;
