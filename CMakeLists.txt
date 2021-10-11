@@ -31,7 +31,7 @@ add_executable(testClient testClient.cpp
         io/DefaultIO.h io/StandardIO.h io/StandardIo.cpp io/SocketIO.h io/SocketIO.cpp
         sockets/TcpSocket.h sockets/TcpSocket.cpp)
 
-add_executable(otherClient testClientCopy.cpp
+add_executable(otherClient
         io/DefaultIO.h io/StandardIO.h io/StandardIo.cpp io/SocketIO.h io/SocketIO.cpp
         sockets/TcpSocket.h sockets/TcpSocket.cpp)
 
