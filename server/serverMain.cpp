@@ -20,15 +20,12 @@ int main() {
     while (true) {
         try {
             // socket object to receive incoming clients
-            // TIMEOUT is 30000ms with 1000ms delay by default
+            // DEFAULT TIMEOUT ---> 30000ms with 1000ms delay by default
             TcpSocket client = server.accept();
             // displaying that new client has connected
             std::cout << "new client connected" << std::endl;
             //creating a new thread object
             auto *clientThread = new std::thread(handle, client);
-
-            clientThread->join();
-            exit(0);
             threads.push_back(clientThread);
         } catch (std::exception& e) {
             // waiting for all client threads to finish

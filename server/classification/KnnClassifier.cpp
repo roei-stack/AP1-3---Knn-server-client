@@ -187,6 +187,7 @@ void KnnClassifier::resetAndCopyData(vector<Classifiable *> *oldData, vector<Cla
     std::copy(newData->begin(), newData->end(), std::back_inserter(*oldData));
     //saving space
     oldData->shrink_to_fit();
+    delete newData;
 }
 
 KnnClassifier::~KnnClassifier() {

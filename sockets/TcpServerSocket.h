@@ -8,6 +8,8 @@
 #include <cstring>
 #include <fcntl.h>
 
+#define DEFAULT_TIME_OUT 120000
+#define DEFAULT_ACCEPT_FREQUENCY 1000
 #define CLIENT_QUEUE_SIZE 5
 
 class TcpServerSocket {
@@ -26,7 +28,7 @@ public:
      * @return the new client socket
      * if accept failed, will either print an error or throw a timeout exception
      */
-    TcpSocket accept(double timeout = 30000, double frequency = 1000) const;
+    TcpSocket accept(double timeout = DEFAULT_TIME_OUT, double frequency = DEFAULT_ACCEPT_FREQUENCY) const;
 
     void close();
 
