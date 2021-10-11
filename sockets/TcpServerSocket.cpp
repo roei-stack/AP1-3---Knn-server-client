@@ -1,4 +1,3 @@
-#include <iostream>
 #include "TcpServerSocket.h"
 
 TcpServerSocket::TcpServerSocket(int port, const char *ip) {

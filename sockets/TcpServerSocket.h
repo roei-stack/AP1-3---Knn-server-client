@@ -2,6 +2,7 @@
 #define ASS2_TCPSERVERSOCKET_H
 
 #include "TcpSocket.h"
+#include <iostream>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
