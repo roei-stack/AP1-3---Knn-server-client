@@ -18,7 +18,7 @@ void CLI::start() {
         try {
             option = std::stoi(in);
             if (option < 1 || option > this->commands.size() + 1) {
-                throw 0; // todo why try catch and not just if
+                throw 0;
             }
         } catch (...) {
             this->io->writeLine("Invalid command!");
